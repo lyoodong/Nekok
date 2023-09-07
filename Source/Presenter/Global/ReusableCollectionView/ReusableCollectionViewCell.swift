@@ -5,4 +5,9 @@
 //  Created by Dongwan Ryoo on 2023/09/07.
 //
 
-import Foundation
+import UIKit
+
+//ReusableIDF
+protocol ReusableIDF {
+    static var IDF:String { get }
+}
