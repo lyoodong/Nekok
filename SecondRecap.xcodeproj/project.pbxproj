@@ -30,6 +30,8 @@
 		BEA9FB802AAA18D300766CDA /* ReusableCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB7F2AAA18D300766CDA /* ReusableCollectionView.swift */; };
 		BEA9FB822AAA18D900766CDA /* ReusableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB812AAA18D900766CDA /* ReusableCollectionViewCell.swift */; };
 		BEA9FB842AAA196D00766CDA /* Ext + UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB832AAA196D00766CDA /* Ext + UIViewController.swift */; };
+		BEA9FB862AAA19D500766CDA /*  Pro + ReusableIDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB852AAA19D500766CDA /*  Pro + ReusableIDF.swift */; };
+		BEA9FB882AAA1A7000766CDA /* Ext + UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB872AAA1A7000766CDA /* Ext + UIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,8 @@
 		BEA9FB7F2AAA18D300766CDA /* ReusableCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCollectionView.swift; sourceTree = "<group>"; };
 		BEA9FB812AAA18D900766CDA /* ReusableCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCollectionViewCell.swift; sourceTree = "<group>"; };
 		BEA9FB832AAA196D00766CDA /* Ext + UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext + UIViewController.swift"; sourceTree = "<group>"; };
+		BEA9FB852AAA19D500766CDA /*  Pro + ReusableIDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " Pro + ReusableIDF.swift"; sourceTree = "<group>"; };
+		BEA9FB872AAA1A7000766CDA /* Ext + UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext + UIView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				BEA9FB832AAA196D00766CDA /* Ext + UIViewController.swift */,
+				BEA9FB872AAA1A7000766CDA /* Ext + UIView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -229,6 +234,7 @@
 		BEA9FB4D2AA9C6E400766CDA /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				BEA9FB852AAA19D500766CDA /*  Pro + ReusableIDF.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -332,9 +338,11 @@
 			files = (
 				BEA9FB452AA9C62A00766CDA /* SearchView.swift in Sources */,
 				BEA9FB802AAA18D300766CDA /* ReusableCollectionView.swift in Sources */,
+				BEA9FB862AAA19D500766CDA /*  Pro + ReusableIDF.swift in Sources */,
 				BEA9FB792AAA16A700766CDA /* BaseView.swift in Sources */,
 				BEA9FB572AA9C72E00766CDA /* APIkey.swift in Sources */,
 				BEA9FB592AA9C79700766CDA /* APIManager.swift in Sources */,
+				BEA9FB882AAA1A7000766CDA /* Ext + UIView.swift in Sources */,
 				BEA9FB752AA9D1C500766CDA /* Model.swift in Sources */,
 				BEA9FB7B2AAA16BB00766CDA /* BaseViewController.swift in Sources */,
 				BEA9FB552AA9C71F00766CDA /* DetailView.swift in Sources */,
