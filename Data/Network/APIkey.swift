@@ -8,9 +8,7 @@
 import Foundation
 
 class APIkey {
-    static let shared = APIkey()
-    private init() { }
     
-    let clientID = "n1_4mbXVpbuhdnbOmH6c"
-    let clientSecret = "2mPDOCMwUo"
+    static let clientID = "n1_4mbXVpbuhdnbOmH6c"
+    static let clientSecret = "2mPDOCMwUo"
 }
