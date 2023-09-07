@@ -20,7 +20,7 @@ class BaseCollectionViewCell: UICollectionViewCell {
     }
     
     func viewSet() {
-        self.backgroundColor = .white
+        self.backgroundColor = .black
         
     }
     

@@ -32,6 +32,7 @@
 		BEA9FB842AAA196D00766CDA /* Ext + UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB832AAA196D00766CDA /* Ext + UIViewController.swift */; };
 		BEA9FB862AAA19D500766CDA /*  Pro + ReusableIDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB852AAA19D500766CDA /*  Pro + ReusableIDF.swift */; };
 		BEA9FB882AAA1A7000766CDA /* Ext + UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB872AAA1A7000766CDA /* Ext + UIView.swift */; };
+		BEA9FB932AAA20EC00766CDA /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB922AAA20EC00766CDA /* Constant.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		BEA9FB832AAA196D00766CDA /* Ext + UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext + UIViewController.swift"; sourceTree = "<group>"; };
 		BEA9FB852AAA19D500766CDA /*  Pro + ReusableIDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " Pro + ReusableIDF.swift"; sourceTree = "<group>"; };
 		BEA9FB872AAA1A7000766CDA /* Ext + UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext + UIView.swift"; sourceTree = "<group>"; };
+		BEA9FB922AAA20EC00766CDA /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,7 @@
 		BEA9FB472AA9C66900766CDA /* Constant */ = {
 			isa = PBXGroup;
 			children = (
+				BEA9FB922AAA20EC00766CDA /* Constant.swift */,
 			);
 			path = Constant;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				BEA9FB712AA9CF2500766CDA /* SortType.swift in Sources */,
 				BEA9FB4F2AA9C70500766CDA /* LikeView.swift in Sources */,
 				BEA9FB262AA9C29000766CDA /* AppDelegate.swift in Sources */,
+				BEA9FB932AAA20EC00766CDA /* Constant.swift in Sources */,
 				BEA9FB282AA9C29000766CDA /* SceneDelegate.swift in Sources */,
 				BEA9FB512AA9C70E00766CDA /* LikeViewController.swift in Sources */,
 				BEA9FB7D2AAA16C000766CDA /* BaseCollectionViewCell.swift in Sources */,
