@@ -27,6 +27,8 @@
 		BEA9FB792AAA16A700766CDA /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB782AAA16A700766CDA /* BaseView.swift */; };
 		BEA9FB7B2AAA16BB00766CDA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB7A2AAA16BB00766CDA /* BaseViewController.swift */; };
 		BEA9FB7D2AAA16C000766CDA /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB7C2AAA16C000766CDA /* BaseCollectionViewCell.swift */; };
+		BEA9FB802AAA18D300766CDA /* ReusableCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB7F2AAA18D300766CDA /* ReusableCollectionView.swift */; };
+		BEA9FB822AAA18D900766CDA /* ReusableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB812AAA18D900766CDA /* ReusableCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		BEA9FB782AAA16A700766CDA /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		BEA9FB7A2AAA16BB00766CDA /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		BEA9FB7C2AAA16C000766CDA /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		BEA9FB7F2AAA18D300766CDA /* ReusableCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCollectionView.swift; sourceTree = "<group>"; };
+		BEA9FB812AAA18D900766CDA /* ReusableCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +137,7 @@
 		BEA9FB3E2AA9C2C400766CDA /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				BEA9FB7E2AAA18C000766CDA /* ReusableCollectionView */,
 				BEA9FB6F2AA9CF0E00766CDA /* Enum */,
 				BEA9FB462AA9C65600766CDA /* Base */,
 				BEA9FB492AA9C68F00766CDA /* Transition */,
@@ -233,6 +238,15 @@
 			path = Enum;
 			sourceTree = "<group>";
 		};
+		BEA9FB7E2AAA18C000766CDA /* ReusableCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				BEA9FB7F2AAA18D300766CDA /* ReusableCollectionView.swift */,
+				BEA9FB812AAA18D900766CDA /* ReusableCollectionViewCell.swift */,
+			);
+			path = ReusableCollectionView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -314,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEA9FB452AA9C62A00766CDA /* SearchView.swift in Sources */,
+				BEA9FB802AAA18D300766CDA /* ReusableCollectionView.swift in Sources */,
 				BEA9FB792AAA16A700766CDA /* BaseView.swift in Sources */,
 				BEA9FB572AA9C72E00766CDA /* APIkey.swift in Sources */,
 				BEA9FB592AA9C79700766CDA /* APIManager.swift in Sources */,
@@ -328,6 +343,7 @@
 				BEA9FB512AA9C70E00766CDA /* LikeViewController.swift in Sources */,
 				BEA9FB7D2AAA16C000766CDA /* BaseCollectionViewCell.swift in Sources */,
 				BEA9FB532AA9C71400766CDA /* DetailViewController.swift in Sources */,
+				BEA9FB822AAA18D900766CDA /* ReusableCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
