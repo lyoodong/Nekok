@@ -104,26 +104,26 @@ class SearchView: BaseView {
         
         accuracyButton.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaLayoutGuide)
-            $0.leading.equalTo(cancelButton.snp.trailing).offset(Constant.spacing / 4)
+            $0.leading.equalTo(cancelButton.snp.trailing).offset(Constant.spacing / 2)
         }
         
         dateButton.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaLayoutGuide)
-            $0.leading.equalTo(accuracyButton.snp.trailing).offset(Constant.spacing / 4)
+            $0.leading.equalTo(accuracyButton.snp.trailing).offset(Constant.spacing / 2)
         }
         
         priceHighButton.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaLayoutGuide)
-            $0.leading.equalTo(dateButton.snp.trailing).offset(Constant.spacing / 4)
+            $0.leading.equalTo(dateButton.snp.trailing).offset(Constant.spacing / 2)
         }
         
         priceLowButton.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaLayoutGuide)
-            $0.leading.equalTo(priceHighButton.snp.trailing).offset(Constant.spacing / 4)
+            $0.leading.equalTo(priceHighButton.snp.trailing).offset(Constant.spacing / 2)
         }
         
         searchCollectionView.snp.makeConstraints {
-            $0.top.equalTo(cancelButton.snp.bottom)
+            $0.top.equalTo(cancelButton.snp.bottom).offset(Constant.spacing)
             $0.leading.equalTo(self.safeAreaLayoutGuide).offset(Constant.spacing / 2)
             $0.trailing.equalTo(self.safeAreaLayoutGuide).inset(Constant.spacing / 2)
             $0.bottom.equalTo(self.safeAreaLayoutGuide)

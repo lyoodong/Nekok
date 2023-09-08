@@ -27,12 +27,12 @@
 		BEA9FB792AAA16A700766CDA /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB782AAA16A700766CDA /* BaseView.swift */; };
 		BEA9FB7B2AAA16BB00766CDA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB7A2AAA16BB00766CDA /* BaseViewController.swift */; };
 		BEA9FB7D2AAA16C000766CDA /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB7C2AAA16C000766CDA /* BaseCollectionViewCell.swift */; };
-		BEA9FB802AAA18D300766CDA /* ReusableCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB7F2AAA18D300766CDA /* ReusableCollectionView.swift */; };
 		BEA9FB822AAA18D900766CDA /* ReusableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB812AAA18D900766CDA /* ReusableCollectionViewCell.swift */; };
 		BEA9FB842AAA196D00766CDA /* Ext + UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB832AAA196D00766CDA /* Ext + UIViewController.swift */; };
 		BEA9FB862AAA19D500766CDA /*  Pro + ReusableIDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB852AAA19D500766CDA /*  Pro + ReusableIDF.swift */; };
 		BEA9FB882AAA1A7000766CDA /* Ext + UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB872AAA1A7000766CDA /* Ext + UIView.swift */; };
 		BEA9FB932AAA20EC00766CDA /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB922AAA20EC00766CDA /* Constant.swift */; };
+		BEA9FB9B2AAA440E00766CDA /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB9A2AAA440E00766CDA /* TabBarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,12 +54,12 @@
 		BEA9FB782AAA16A700766CDA /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		BEA9FB7A2AAA16BB00766CDA /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		BEA9FB7C2AAA16C000766CDA /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
-		BEA9FB7F2AAA18D300766CDA /* ReusableCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCollectionView.swift; sourceTree = "<group>"; };
 		BEA9FB812AAA18D900766CDA /* ReusableCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCollectionViewCell.swift; sourceTree = "<group>"; };
 		BEA9FB832AAA196D00766CDA /* Ext + UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext + UIViewController.swift"; sourceTree = "<group>"; };
 		BEA9FB852AAA19D500766CDA /*  Pro + ReusableIDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " Pro + ReusableIDF.swift"; sourceTree = "<group>"; };
 		BEA9FB872AAA1A7000766CDA /* Ext + UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext + UIView.swift"; sourceTree = "<group>"; };
 		BEA9FB922AAA20EC00766CDA /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		BEA9FB9A2AAA440E00766CDA /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +115,7 @@
 		BEA9FB3B2AA9C2A200766CDA /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				BEA9FB972AAA43F400766CDA /* TabBar */,
 				BEA9FB3E2AA9C2C400766CDA /* Global */,
 				BEA9FB3F2AA9C2E600766CDA /* Search */,
 				BEA9FB402AA9C2F800766CDA /* Like */,
@@ -253,10 +254,17 @@
 		BEA9FB7E2AAA18C000766CDA /* ReusableCollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				BEA9FB7F2AAA18D300766CDA /* ReusableCollectionView.swift */,
 				BEA9FB812AAA18D900766CDA /* ReusableCollectionViewCell.swift */,
 			);
 			path = ReusableCollectionView;
+			sourceTree = "<group>";
+		};
+		BEA9FB972AAA43F400766CDA /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				BEA9FB9A2AAA440E00766CDA /* TabBarViewController.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -340,8 +348,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEA9FB452AA9C62A00766CDA /* SearchView.swift in Sources */,
-				BEA9FB802AAA18D300766CDA /* ReusableCollectionView.swift in Sources */,
 				BEA9FB862AAA19D500766CDA /*  Pro + ReusableIDF.swift in Sources */,
+				BEA9FB9B2AAA440E00766CDA /* TabBarViewController.swift in Sources */,
 				BEA9FB792AAA16A700766CDA /* BaseView.swift in Sources */,
 				BEA9FB572AA9C72E00766CDA /* APIkey.swift in Sources */,
 				BEA9FB592AA9C79700766CDA /* APIManager.swift in Sources */,

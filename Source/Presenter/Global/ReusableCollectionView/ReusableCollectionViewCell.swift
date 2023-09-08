@@ -48,15 +48,14 @@ class ReusableCollectionViewCell: BaseCollectionViewCell {
     
     lazy var productLikeButton:UIButton =  {
         let view = UIButton()
-        let unClickedimage = UIImage(systemName: "heart")
-        let clickedimage = UIImage(systemName: "heart.fill")
+        let unselectedimage = UIImage(systemName: "heart")
+        let selectedimage = UIImage(systemName: "heart.fill")
         view.tintColor = .black
         view.backgroundColor = .white
         view.addTarget(self, action: #selector(likeButtonClicked), for: .touchUpInside)
-        view.setImage(unClickedimage, for: .normal)
-        view.setImage(clickedimage, for: .selected)
-        view.layer.cornerRadius = Constant.spacing / 2
-        
+        view.setImage(unselectedimage, for: .normal)
+        view.setImage(selectedimage, for: .selected)
+        view.layer.cornerRadius = Constant.spacing
         return view
     }()
     
@@ -67,6 +66,7 @@ class ReusableCollectionViewCell: BaseCollectionViewCell {
     
     @objc func likeButtonClicked() {
         isLiked.toggle()
+        productLikeButton.isSelected.toggle()
     }
     
     override func constraints() {
@@ -92,7 +92,6 @@ class ReusableCollectionViewCell: BaseCollectionViewCell {
         
         productLikeButton.snp.makeConstraints {
             $0.bottom.trailing.equalTo(productImageView).inset(Constant.spacing / 2)
-//            $0.trailing.equalTo(productImageView.snp.trailing).inset(Constant.spacing / 2)
             $0.size.equalTo(Constant.spacing * 2)
         }
     }

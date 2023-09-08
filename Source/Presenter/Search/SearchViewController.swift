@@ -10,6 +10,8 @@ import Alamofire
 import SnapKit
 
 class SearchViewController: BaseViewController {
+    
+    
     //MARK: - Porperty
     var shoppingList:Result? {
         didSet {
@@ -24,12 +26,12 @@ class SearchViewController: BaseViewController {
     override func loadView() {
         view = searchView
     }
-    
+
     override func viewSet() {
         super.viewSet()
         callrequest()
-        navigationbarSet()
         searchCollectionViewSet()
+        navigationbarSet()
         addtarget()
     }
     
@@ -40,9 +42,17 @@ class SearchViewController: BaseViewController {
     }
     
     func navigationbarSet() {
-        navigationItem.title = "쇼핑 검색"
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.isHidden = true
+    }
     
+    @objc
+    func searchbuttonClicked() {
+        
+    }
+    
+    @objc
+    func likebuttonClicked() {
+        
     }
     
     func searchCollectionViewSet() {
@@ -103,7 +113,7 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
             }
         }
         
-    
+        
         return cell
     }
     
