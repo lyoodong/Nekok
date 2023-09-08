@@ -7,7 +7,8 @@
 
 import Foundation
 
-class RemoveHTMLTags {
+class StringHelper {
+    
     static func removepHTMLTags(from htmlString: String) -> String {
         let htmlTagPattern = "<[^>]+>"
         let regex = try! NSRegularExpression(pattern: htmlTagPattern, options: .caseInsensitive)
@@ -21,5 +22,18 @@ class RemoveHTMLTags {
         strippedString = strippedString.replacingOccurrences(of: "&quot;", with: "\"")
         
         return strippedString
+    }
+    
+    static func commaSeparator(price:String) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        
+        guard let intPrice = Int(price)
+        else { return "Int 변환 실패"}
+        
+        guard let formattedPrice = formatter.string(from: intPrice as NSNumber)
+        else { return "포매팅 실패"}
+    
+        return formattedPrice + " 원"
     }
 }
