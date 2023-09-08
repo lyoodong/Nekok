@@ -15,6 +15,9 @@ class TabBarViewController: UITabBarController {
         return view
     }()
     
+    let search = SearchViewController()
+    let like = SearchViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewSet()
@@ -22,26 +25,25 @@ class TabBarViewController: UITabBarController {
 
     func viewSet(){
         addViewControllers()
-        setupSearchController()
+        searchControllerSet()
         self.tabBar.tintColor = .systemPink
         self.tabBar.unselectedItemTintColor = .white
     }
     
     func addViewControllers() {
-        let search = SearchViewController()
         let searchTab = createViewController(title: "검색", imageName: "magnifyingglass", viewController: search)
-        let like = SearchViewController()
         let likeTab = createViewController(title: "좋아요", imageName: "heart", viewController: like)
         
         self.viewControllers = [searchTab, likeTab]
     }
     
-    func setupSearchController() {
+    func searchControllerSet() {
         let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchBar.placeholder = "검색(placeholder)"
+        searchController.searchBar.placeholder = "검색어를 입력해주세요."
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.tintColor = .systemPink
+        searchController.searchBar.barStyle = .black
         navigationItem.searchController = searchController
     }
     
@@ -53,5 +55,4 @@ class TabBarViewController: UITabBarController {
         navigationItem.titleView = naviTitle
         return nav
     }
-    
 }
