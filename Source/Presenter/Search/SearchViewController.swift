@@ -54,7 +54,6 @@ class SearchViewController: BaseViewController {
     
     func searchControllerSet() {
         searchController.searchBar.delegate = self
-        searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "검색어를 입력해주세요."
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
@@ -148,10 +147,10 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     }
 }
 
-extension SearchViewController: UISearchBarDelegate, UISearchResultsUpdating {
-
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let query = searchText
+extension SearchViewController: UISearchBarDelegate {
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        guard let query = searchBar.text else { return }
         callrequest(query: query, sortType: .sim)
     }
     
@@ -164,8 +163,9 @@ extension SearchViewController: UISearchBarDelegate, UISearchResultsUpdating {
         callrequest(query: query, sortType: .sim)
     }
     
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let query = searchController.searchBar.text else { return }
-        callrequest(query: query, sortType: .sim)
-    }
+    //    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    //        let query = searchText
+    //        callrequest(query: query, sortType: .sim)
+    //    }
+    
 }
