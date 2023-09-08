@@ -33,7 +33,7 @@
 		BEA9FB882AAA1A7000766CDA /* Ext + UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB872AAA1A7000766CDA /* Ext + UIView.swift */; };
 		BEA9FB932AAA20EC00766CDA /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB922AAA20EC00766CDA /* Constant.swift */; };
 		BEA9FB9B2AAA440E00766CDA /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB9A2AAA440E00766CDA /* TabBarViewController.swift */; };
-		BEA9FBA72AAB04A700766CDA /* RemoveHTMLTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FBA62AAB04A700766CDA /* RemoveHTMLTags.swift */; };
+		BEA9FBA72AAB04A700766CDA /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FBA62AAB04A700766CDA /* StringHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,7 +61,7 @@
 		BEA9FB872AAA1A7000766CDA /* Ext + UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext + UIView.swift"; sourceTree = "<group>"; };
 		BEA9FB922AAA20EC00766CDA /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		BEA9FB9A2AAA440E00766CDA /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
-		BEA9FBA62AAB04A700766CDA /* RemoveHTMLTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveHTMLTags.swift; sourceTree = "<group>"; };
+		BEA9FBA62AAB04A700766CDA /* StringHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,8 +118,8 @@
 		BEA9FB3B2AA9C2A200766CDA /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				BEA9FB972AAA43F400766CDA /* TabBar */,
 				BEA9FB3E2AA9C2C400766CDA /* Global */,
+				BEA9FB972AAA43F400766CDA /* TabBar */,
 				BEA9FB3F2AA9C2E600766CDA /* Search */,
 				BEA9FB402AA9C2F800766CDA /* Like */,
 				BEA9FB412AA9C30A00766CDA /* Detail */,
@@ -149,7 +149,7 @@
 		BEA9FB3E2AA9C2C400766CDA /* Global */ = {
 			isa = PBXGroup;
 			children = (
-				BEA9FBA52AAB049100766CDA /* RemoveHTMLtags */,
+				BEA9FBA52AAB049100766CDA /* StringHelper */,
 				BEA9FB7E2AAA18C000766CDA /* ReusableCollectionView */,
 				BEA9FB6F2AA9CF0E00766CDA /* Enum */,
 				BEA9FB462AA9C65600766CDA /* Base */,
@@ -270,12 +270,12 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		BEA9FBA52AAB049100766CDA /* RemoveHTMLtags */ = {
+		BEA9FBA52AAB049100766CDA /* StringHelper */ = {
 			isa = PBXGroup;
 			children = (
-				BEA9FBA62AAB04A700766CDA /* RemoveHTMLTags.swift */,
+				BEA9FBA62AAB04A700766CDA /* StringHelper.swift */,
 			);
-			path = RemoveHTMLtags;
+			path = StringHelper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -373,7 +373,7 @@
 				BEA9FB4F2AA9C70500766CDA /* LikeView.swift in Sources */,
 				BEA9FB262AA9C29000766CDA /* AppDelegate.swift in Sources */,
 				BEA9FB932AAA20EC00766CDA /* Constant.swift in Sources */,
-				BEA9FBA72AAB04A700766CDA /* RemoveHTMLTags.swift in Sources */,
+				BEA9FBA72AAB04A700766CDA /* StringHelper.swift in Sources */,
 				BEA9FB282AA9C29000766CDA /* SceneDelegate.swift in Sources */,
 				BEA9FB512AA9C70E00766CDA /* LikeViewController.swift in Sources */,
 				BEA9FB7D2AAA16C000766CDA /* BaseCollectionViewCell.swift in Sources */,

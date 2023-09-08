@@ -19,6 +19,7 @@ class SearchViewController: BaseViewController {
     
     //MARK: - UI property
     let searchView = SearchView()
+    let searchController = UISearchController(searchResultsController: nil)
     
     lazy var naviTitle:UILabel = {
         let view = UILabel()
@@ -30,18 +31,17 @@ class SearchViewController: BaseViewController {
     override func loadView() {
         view = searchView
     }
-
+    
     override func viewSet() {
         super.viewSet()
-        callrequest()
         searchCollectionViewSet()
         navigationbarSet()
         searchControllerSet()
         addtarget()
     }
     
-    func callrequest() {
-        APIManager.shared.callRequest(query: "그랜저", sortType: .sim) { Result in
+    func callrequest(query:String, sortType: SortType) {
+        APIManager.shared.callRequest(query: query, sortType: sortType) { Result in
             self.shoppingList = Result
         }
     }
@@ -49,11 +49,12 @@ class SearchViewController: BaseViewController {
     func navigationbarSet() {
         navigationItem.titleView = naviTitle
         navigationItem.backButtonTitle = naviTitle.text
-
+        
     }
     
     func searchControllerSet() {
-        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.delegate = self
+        searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "검색어를 입력해주세요."
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
@@ -114,9 +115,13 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         guard let title = shoppingList?.items[indexPath.row].title
         else { return UICollectionViewCell() }
         
-        cell.productTitle.text = RemoveHTMLTags.removepHTMLTags(from: title)
+        cell.productTitle.text = StringHelper.removepHTMLTags(from: title)
         cell.productMallName.text = shoppingList?.items[indexPath.row].mallName
-        cell.productLprice.text = shoppingList?.items[indexPath.row].lprice
+        
+        guard let price = shoppingList?.items[indexPath.row].lprice
+        else { return UICollectionViewCell() }
+        
+        cell.productLprice.text = StringHelper.commaSeparator(price: price)
         
         DispatchQueue.global().async {
             if let url = URL(string: self.shoppingList?.items[indexPath.row].image ?? ""){
@@ -138,7 +143,29 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         guard let productTitle = shoppingList?.items[indexPath.row].title else { return }
         let vc = DetailViewController()
         vc.urlString = url
-        vc.naviTitle.text = RemoveHTMLTags.removepHTMLTags(from: productTitle)
+        vc.naviTitle.text = StringHelper.removepHTMLTags(from: productTitle)
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension SearchViewController: UISearchBarDelegate, UISearchResultsUpdating {
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let query = searchText
+        callrequest(query: query, sortType: .sim)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.shoppingList = nil
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let query = searchBar.text else { return }
+        callrequest(query: query, sortType: .sim)
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let query = searchController.searchBar.text else { return }
+        callrequest(query: query, sortType: .sim)
     }
 }

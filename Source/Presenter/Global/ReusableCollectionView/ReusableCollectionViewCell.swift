@@ -15,7 +15,7 @@ class ReusableCollectionViewCell: BaseCollectionViewCell {
     //MARK: - UI property
     lazy var productImageView:UIImageView = {
         let view = UIImageView()
-        view.contentMode = .scaleAspectFit
+        view.contentMode = .scaleAspectFill
         view.layer.cornerRadius = 20
         view.clipsToBounds = true
         
@@ -76,7 +76,7 @@ class ReusableCollectionViewCell: BaseCollectionViewCell {
         }
         
         productMallName.snp.makeConstraints {
-            $0.top.equalTo(productImageView.snp.bottom)
+            $0.top.equalTo(productImageView.snp.bottom).offset(Constant.spacing / 2)
             $0.leading.equalTo(self)
         }
         
