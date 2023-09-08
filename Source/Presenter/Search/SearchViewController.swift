@@ -61,15 +61,10 @@ class SearchViewController: BaseViewController {
     }
     
     func addtarget() {
-        searchView.cancelButton.addTarget(self, action: #selector(cancelButtonClicked), for: .touchUpInside)
         searchView.accuracyButton.addTarget(self, action: #selector(accuracyButtonClicked), for: .touchUpInside)
         searchView.dateButton.addTarget(self, action: #selector(dateButtonClicked), for: .touchUpInside)
         searchView.priceHighButton.addTarget(self, action: #selector(priceHighButtonClicked), for: .touchUpInside)
         searchView.priceLowButton.addTarget(self, action: #selector(priceLowButtonClicked), for: .touchUpInside)
-    }
-    
-    @objc func cancelButtonClicked() {
-        
     }
     
     @objc func accuracyButtonClicked() {
@@ -99,7 +94,10 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReusableCollectionViewCell.IDF, for: indexPath) as? ReusableCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.productTitle.text = shoppingList?.items[indexPath.row].title
+        guard let title = shoppingList?.items[indexPath.row].title
+        else { return UICollectionViewCell() }
+        
+        cell.productTitle.text = RemoveHTMLTags.removepHTMLTags(from: title)
         cell.productMallName.text = shoppingList?.items[indexPath.row].mallName
         cell.productLprice.text = shoppingList?.items[indexPath.row].lprice
         

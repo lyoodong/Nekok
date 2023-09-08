@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE6DD0252AAB5BEC00511D5B /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE6DD0242AAB5BEC00511D5B /* Storyboard.storyboard */; };
 		BEA9FB262AA9C29000766CDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB252AA9C29000766CDA /* AppDelegate.swift */; };
 		BEA9FB282AA9C29000766CDA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB272AA9C29000766CDA /* SceneDelegate.swift */; };
 		BEA9FB2F2AA9C29100766CDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEA9FB2E2AA9C29100766CDA /* Assets.xcassets */; };
@@ -33,9 +34,11 @@
 		BEA9FB882AAA1A7000766CDA /* Ext + UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB872AAA1A7000766CDA /* Ext + UIView.swift */; };
 		BEA9FB932AAA20EC00766CDA /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB922AAA20EC00766CDA /* Constant.swift */; };
 		BEA9FB9B2AAA440E00766CDA /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB9A2AAA440E00766CDA /* TabBarViewController.swift */; };
+		BEA9FBA72AAB04A700766CDA /* RemoveHTMLTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FBA62AAB04A700766CDA /* RemoveHTMLTags.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BE6DD0242AAB5BEC00511D5B /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		BEA9FB222AA9C29000766CDA /* SecondRecap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecondRecap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEA9FB252AA9C29000766CDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BEA9FB272AA9C29000766CDA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +63,7 @@
 		BEA9FB872AAA1A7000766CDA /* Ext + UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext + UIView.swift"; sourceTree = "<group>"; };
 		BEA9FB922AAA20EC00766CDA /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		BEA9FB9A2AAA440E00766CDA /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		BEA9FBA62AAB04A700766CDA /* RemoveHTMLTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveHTMLTags.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +84,7 @@
 		BEA9FB192AA9C29000766CDA = {
 			isa = PBXGroup;
 			children = (
+				BE6DD0242AAB5BEC00511D5B /* Storyboard.storyboard */,
 				BEA9FB3A2AA9C2A100766CDA /* Resource */,
 				BEA9FB392AA9C29400766CDA /* Source */,
 				BEA9FB3D2AA9C2A600766CDA /* Data */,
@@ -146,6 +151,7 @@
 		BEA9FB3E2AA9C2C400766CDA /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				BEA9FBA52AAB049100766CDA /* RemoveHTMLtags */,
 				BEA9FB7E2AAA18C000766CDA /* ReusableCollectionView */,
 				BEA9FB6F2AA9CF0E00766CDA /* Enum */,
 				BEA9FB462AA9C65600766CDA /* Base */,
@@ -267,6 +273,14 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		BEA9FBA52AAB049100766CDA /* RemoveHTMLtags */ = {
+			isa = PBXGroup;
+			children = (
+				BEA9FBA62AAB04A700766CDA /* RemoveHTMLTags.swift */,
+			);
+			path = RemoveHTMLtags;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -337,6 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEA9FB2F2AA9C29100766CDA /* Assets.xcassets in Resources */,
+				BE6DD0252AAB5BEC00511D5B /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +377,7 @@
 				BEA9FB4F2AA9C70500766CDA /* LikeView.swift in Sources */,
 				BEA9FB262AA9C29000766CDA /* AppDelegate.swift in Sources */,
 				BEA9FB932AAA20EC00766CDA /* Constant.swift in Sources */,
+				BEA9FBA72AAB04A700766CDA /* RemoveHTMLTags.swift in Sources */,
 				BEA9FB282AA9C29000766CDA /* SceneDelegate.swift in Sources */,
 				BEA9FB512AA9C70E00766CDA /* LikeViewController.swift in Sources */,
 				BEA9FB7D2AAA16C000766CDA /* BaseCollectionViewCell.swift in Sources */,

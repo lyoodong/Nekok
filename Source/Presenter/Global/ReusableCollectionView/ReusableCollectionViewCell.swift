@@ -82,7 +82,7 @@ class ReusableCollectionViewCell: BaseCollectionViewCell {
         
         productTitle.snp.makeConstraints {
             $0.top.equalTo(productMallName.snp.bottom)
-            $0.leading.equalTo(self)
+            $0.horizontalEdges.equalTo(self)
         }
         
         productLprice.snp.makeConstraints {

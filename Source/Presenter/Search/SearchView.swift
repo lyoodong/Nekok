@@ -12,26 +12,15 @@ class SearchView: BaseView {
     //MARK: - Porperty
     
     //MARK: - UI property
-    // 취소 버튼
-    lazy var cancelButton: UIButton = {
-        let view = UIButton()
-        view.setTitle("취소", for: .normal)
-        view.setTitleColor(.gray, for: .normal)
-        view.layer.borderColor = UIColor.gray.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 2
-        
-        return view
-    }()
-    
+
     //정렬 버튼 정확도순
     lazy var accuracyButton: UIButton = {
         let view = UIButton()
-        view.setTitle("정확도순", for: .normal)
+        view.setTitle("  정확도순  ", for: .normal)
         view.setTitleColor(.gray, for: .normal)
         view.layer.borderColor = UIColor.gray.cgColor
         view.layer.borderWidth = 1
-        view.layer.cornerRadius = 2
+        view.layer.cornerRadius = 10
         
         return view
     }()
@@ -39,11 +28,11 @@ class SearchView: BaseView {
     //정렬 버튼 날짜순
     lazy var dateButton: UIButton = {
         let view = UIButton()
-        view.setTitle("날짜순", for: .normal)
+        view.setTitle("  날짜순  ", for: .normal)
         view.setTitleColor(.gray, for: .normal)
         view.layer.borderColor = UIColor.gray.cgColor
         view.layer.borderWidth = 1
-        view.layer.cornerRadius = 2
+        view.layer.cornerRadius = 10
         
         return view
     }()
@@ -51,11 +40,11 @@ class SearchView: BaseView {
     //정렬 버튼 가격 높은 순
     lazy var priceHighButton: UIButton = {
         let view = UIButton()
-        view.setTitle("가격 높은순", for: .normal)
+        view.setTitle("  가격 높은순  ", for: .normal)
         view.setTitleColor(.gray, for: .normal)
         view.layer.borderColor = UIColor.gray.cgColor
         view.layer.borderWidth = 1
-        view.layer.cornerRadius = 2
+        view.layer.cornerRadius = 10
         
         return view
     }()
@@ -63,11 +52,11 @@ class SearchView: BaseView {
     //정렬 버튼 가격 낮은 순
     lazy var priceLowButton: UIButton = {
         let view = UIButton()
-        view.setTitle("가격 낮은순", for: .normal)
+        view.setTitle("  가격 낮은순  ", for: .normal)
         view.setTitleColor(.gray, for: .normal)
         view.layer.borderColor = UIColor.gray.cgColor
         view.layer.borderWidth = 1
-        view.layer.cornerRadius = 2
+        view.layer.cornerRadius = 10
         
         return view
     }()
@@ -93,18 +82,13 @@ class SearchView: BaseView {
     
     //MARK: - Define method
     override func viewSet() {
-        [cancelButton, accuracyButton, dateButton, priceHighButton, priceLowButton, searchCollectionView].forEach(addSubview)
+        [accuracyButton, dateButton, priceHighButton, priceLowButton, searchCollectionView].forEach(addSubview)
     }
     
     override func constraints() {
-        cancelButton.snp.makeConstraints {
-            $0.top.equalTo(self.safeAreaLayoutGuide)
-            $0.leading.equalTo(self.safeAreaLayoutGuide).offset(Constant.spacing / 2)
-        }
-        
         accuracyButton.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaLayoutGuide)
-            $0.leading.equalTo(cancelButton.snp.trailing).offset(Constant.spacing / 2)
+            $0.leading.equalTo(self.safeAreaLayoutGuide).offset(Constant.spacing)
         }
         
         dateButton.snp.makeConstraints {
@@ -123,7 +107,7 @@ class SearchView: BaseView {
         }
         
         searchCollectionView.snp.makeConstraints {
-            $0.top.equalTo(cancelButton.snp.bottom).offset(Constant.spacing)
+            $0.top.equalTo(accuracyButton.snp.bottom).offset(Constant.spacing)
             $0.leading.equalTo(self.safeAreaLayoutGuide).offset(Constant.spacing / 2)
             $0.trailing.equalTo(self.safeAreaLayoutGuide).inset(Constant.spacing / 2)
             $0.bottom.equalTo(self.safeAreaLayoutGuide)
