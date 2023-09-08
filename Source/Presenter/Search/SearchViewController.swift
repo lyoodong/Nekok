@@ -10,8 +10,6 @@ import Alamofire
 import SnapKit
 
 class SearchViewController: BaseViewController {
-    
-    
     //MARK: - Porperty
     var shoppingList:Result? {
         didSet {
@@ -21,6 +19,12 @@ class SearchViewController: BaseViewController {
     
     //MARK: - UI property
     let searchView = SearchView()
+    
+    lazy var naviTitle:UILabel = {
+        let view = UILabel()
+        view.text = "쇼핑 검색"
+        return view
+    }()
     
     //MARK: - Define method
     override func loadView() {
@@ -32,17 +36,30 @@ class SearchViewController: BaseViewController {
         callrequest()
         searchCollectionViewSet()
         navigationbarSet()
+        searchControllerSet()
         addtarget()
     }
     
     func callrequest() {
-        APIManager.shared.callRequest(query: "캠핑", sortType: .sim) { Result in
+        APIManager.shared.callRequest(query: "그랜저", sortType: .sim) { Result in
             self.shoppingList = Result
         }
     }
     
     func navigationbarSet() {
-        navigationController?.navigationBar.isHidden = true
+        navigationItem.titleView = naviTitle
+        navigationItem.backButtonTitle = naviTitle.text
+
+    }
+    
+    func searchControllerSet() {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.placeholder = "검색어를 입력해주세요."
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.tintColor = .systemPink
+        searchController.searchBar.barStyle = .black
+        navigationItem.searchController = searchController
     }
     
     @objc
@@ -110,12 +127,18 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
                 }
             }
         }
-        
-        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        guard let productID = shoppingList?.items[indexPath.row].productID else { return }
+        let url = "https://msearch.shopping.naver.com/product/" + productID
+        
+        guard let productTitle = shoppingList?.items[indexPath.row].title else { return }
+        let vc = DetailViewController()
+        vc.urlString = url
+        vc.naviTitle.text = RemoveHTMLTags.removepHTMLTags(from: productTitle)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
