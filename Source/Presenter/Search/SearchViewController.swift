@@ -17,6 +17,13 @@ class SearchViewController: BaseViewController {
         }
     }
     
+    var pageCnt:Int = 1 {
+        didSet {
+            searchView.searchCollectionView.reloadData()
+        }
+    }
+    var currentSortType:SortType = .sim
+    
     //MARK: - UI property
     let searchView = SearchView()
     let searchController = UISearchController(searchResultsController: nil)
@@ -40,10 +47,17 @@ class SearchViewController: BaseViewController {
         addtarget()
     }
     
-    func callrequest(query:String, sortType: SortType) {
-        APIManager.shared.callRequest(query: query, sortType: sortType) { Result in
-            self.shoppingList = Result
+    func callrequest(query:String, sortType: SortType, page:Int) {
+        APIManager.shared.callRequest(query: query, sortType: sortType, page: page) { Result in
+            let result = Result
+            
+            if self.shoppingList == nil {
+                self.shoppingList = result
+            } else {
+                self.shoppingList?.items.append(contentsOf: result.items)
+            }
         }
+        
     }
     
     func navigationbarSet() {
@@ -75,6 +89,7 @@ class SearchViewController: BaseViewController {
     func searchCollectionViewSet() {
         searchView.searchCollectionView.delegate = self
         searchView.searchCollectionView.dataSource = self
+        searchView.searchCollectionView.prefetchDataSource = self
     }
     
     func addtarget() {
@@ -84,26 +99,36 @@ class SearchViewController: BaseViewController {
         searchView.priceLowButton.addTarget(self, action: #selector(priceLowButtonClicked), for: .touchUpInside)
     }
     
+    func searchBarText() -> String {
+        guard let searchText = searchController.searchBar.text else { return ""}
+        return searchText
+    }
+    
     @objc func accuracyButtonClicked() {
-        
+        currentSortType = .sim
+        callrequest(query: searchBarText(), sortType: currentSortType, page: pageCnt)
     }
     
     @objc func dateButtonClicked() {
-        
+        currentSortType = .date
+        callrequest(query: searchBarText(), sortType: currentSortType, page: pageCnt)
     }
     
     @objc func priceHighButtonClicked() {
-        
+        currentSortType = .dsc
+        callrequest(query: searchBarText(), sortType: currentSortType, page: pageCnt)
     }
     
     @objc func priceLowButtonClicked() {
-        
+        currentSortType = .asc
+        callrequest(query: searchBarText(), sortType: currentSortType, page: pageCnt)
     }
     
 }
 
 //MARK: - Extension
-extension SearchViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension SearchViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDataSourcePrefetching {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return shoppingList?.items.count ?? 0
     }
@@ -145,13 +170,30 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         vc.naviTitle.text = StringHelper.removepHTMLTags(from: productTitle)
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        
+        guard let shoppingItemCnt = shoppingList?.items.count else { return }
+        
+        for indexPath in indexPaths {
+            if indexPath.row == shoppingItemCnt - 1 && pageCnt < 100 {
+                pageCnt += 1
+                print(pageCnt)
+                callrequest(query: searchBarText(), sortType: currentSortType, page: pageCnt)
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
+        print("===== 빠른 스크롤 중 \(indexPaths) =====")
+    }
 }
 
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         guard let query = searchBar.text else { return }
-        callrequest(query: query, sortType: .sim)
+        callrequest(query: query, sortType: currentSortType, page: 1)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -160,12 +202,6 @@ extension SearchViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let query = searchBar.text else { return }
-        callrequest(query: query, sortType: .sim)
+        callrequest(query: query, sortType: currentSortType, page: 1)
     }
-    
-    //    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-    //        let query = searchText
-    //        callrequest(query: query, sortType: .sim)
-    //    }
-    
 }

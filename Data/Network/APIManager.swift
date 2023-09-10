@@ -12,10 +12,10 @@ class APIManager {
     static let shared = APIManager()
     private init() { }
     
-    func callRequest(query:String, sortType:SortType, complitionHandler: @escaping (Result) ->Void) {
+    func callRequest(query: String, sortType: SortType, page: Int, complitionHandler: @escaping (Result) ->Void) {
         
         guard let encodeQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {return}
-        let url = "https://openapi.naver.com/v1/search/shop.json?query=\(encodeQuery)&sort=\(sortType)&display=30"
+        let url = "https://openapi.naver.com/v1/search/shop.json?query=\(encodeQuery)&sort=\(sortType)&display=30&start=\(page)"
         let headers:HTTPHeaders = [
             "X-Naver-Client-Id":APIkey.clientID,
             "X-Naver-Client-Secret":APIkey.clientSecret

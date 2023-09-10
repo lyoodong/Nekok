@@ -11,7 +11,7 @@ import Foundation
 struct Result: Codable {
     let lastBuildDate: String
     let total, start, display: Int
-    let items: [Item]
+    var items: [Item]
 }
 
 // MARK: - Item
