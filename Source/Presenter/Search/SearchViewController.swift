@@ -63,7 +63,6 @@ class SearchViewController: BaseViewController {
     func navigationbarSet() {
         navigationItem.titleView = naviTitle
         navigationItem.backButtonTitle = naviTitle.text
-        
     }
     
     func searchControllerSet() {
@@ -133,9 +132,7 @@ class SearchViewController: BaseViewController {
         }
     
         func changeButtonUI(_ sender: UIButton) {
-    
             let buttons: [UIButton] = [searchView.accuracyButton, searchView.dateButton, searchView.priceHighButton, searchView.priceLowButton]
-    
             if searchController.searchBar.text == "" {
                 sender.isEnabled = false
             } else {
@@ -239,5 +236,10 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let query = searchBar.text else { return }
         callrequest(query: query, sortType: currentSortType, page: 1)
+//        let buttons: [UIButton] = [searchView.accuracyButton, searchView.dateButton, searchView.priceHighButton, searchView.priceLowButton]
+//        buttons.forEach { UIButton in
+//            UIButton.isHidden = false
+//        }
     }
 }
+

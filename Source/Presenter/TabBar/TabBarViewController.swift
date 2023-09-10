@@ -10,7 +10,7 @@ import UIKit
 class TabBarViewController: UITabBarController {
     
     let search = SearchViewController()
-    let like = SearchViewController()
+    let like = LikeViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
