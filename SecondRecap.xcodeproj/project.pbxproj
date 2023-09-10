@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BE6B5F4A2AAE078E00EB4339 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6B5F492AAE078E00EB4339 /* RealmModel.swift */; };
+		BE6B5F4C2AAE084500EB4339 /* Pro + Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6B5F4B2AAE084500EB4339 /* Pro + Realm.swift */; };
 		BE6DD02F2AADF4B900511D5B /* Ext + UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6DD02E2AADF4B900511D5B /* Ext + UIButton.swift */; };
 		BEA9FB262AA9C29000766CDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB252AA9C29000766CDA /* AppDelegate.swift */; };
 		BEA9FB282AA9C29000766CDA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB272AA9C29000766CDA /* SceneDelegate.swift */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		BE6B5F492AAE078E00EB4339 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		BE6B5F4B2AAE084500EB4339 /* Pro + Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pro + Realm.swift"; sourceTree = "<group>"; };
 		BE6DD02E2AADF4B900511D5B /* Ext + UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext + UIButton.swift"; sourceTree = "<group>"; };
 		BEA9FB222AA9C29000766CDA /* SecondRecap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecondRecap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEA9FB252AA9C29000766CDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				BEA9FB852AAA19D500766CDA /*  Pro + ReusableIDF.swift */,
+				BE6B5F4B2AAE084500EB4339 /* Pro + Realm.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				BEA9FB882AAA1A7000766CDA /* Ext + UIView.swift in Sources */,
 				BEA9FB752AA9D1C500766CDA /* Model.swift in Sources */,
 				BEA9FB7B2AAA16BB00766CDA /* BaseViewController.swift in Sources */,
+				BE6B5F4C2AAE084500EB4339 /* Pro + Realm.swift in Sources */,
 				BE6DD02F2AADF4B900511D5B /* Ext + UIButton.swift in Sources */,
 				BEA9FB432AA9C61F00766CDA /* SearchViewController.swift in Sources */,
 				BEA9FB712AA9CF2500766CDA /* SortType.swift in Sources */,
