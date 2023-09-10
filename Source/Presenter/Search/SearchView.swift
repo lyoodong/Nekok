@@ -12,7 +12,6 @@ class SearchView: BaseView {
     //MARK: - Porperty
     
     //MARK: - UI property
-
     //정렬 버튼 정확도순
     lazy var accuracyButton: UIButton = {
         let view = UIButton()
@@ -21,6 +20,7 @@ class SearchView: BaseView {
         view.layer.borderColor = UIColor.gray.cgColor
         view.layer.borderWidth = 1
         view.layer.cornerRadius = 10
+        view.sortType = .sim
         
         return view
     }()
@@ -33,6 +33,7 @@ class SearchView: BaseView {
         view.layer.borderColor = UIColor.gray.cgColor
         view.layer.borderWidth = 1
         view.layer.cornerRadius = 10
+        view.sortType = .date
         
         return view
     }()
@@ -45,6 +46,7 @@ class SearchView: BaseView {
         view.layer.borderColor = UIColor.gray.cgColor
         view.layer.borderWidth = 1
         view.layer.cornerRadius = 10
+        view.sortType = .asc
         
         return view
     }()
@@ -57,6 +59,7 @@ class SearchView: BaseView {
         view.layer.borderColor = UIColor.gray.cgColor
         view.layer.borderWidth = 1
         view.layer.cornerRadius = 10
+        view.sortType = .dsc
         
         return view
     }()

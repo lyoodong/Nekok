@@ -26,7 +26,7 @@ class SearchViewController: BaseViewController {
     
     //MARK: - UI property
     let searchView = SearchView()
-    let searchController = UISearchController(searchResultsController: nil)
+    let searchController = UISearchController()
     
     lazy var naviTitle:UILabel = {
         let view = UILabel()
@@ -104,25 +104,61 @@ class SearchViewController: BaseViewController {
         return searchText
     }
     
-    @objc func accuracyButtonClicked() {
-        currentSortType = .sim
-        callrequest(query: searchBarText(), sortType: currentSortType, page: pageCnt)
-    }
+        @objc func accuracyButtonClicked(_ sender: UIButton) {
+            currentSortType = .sim
+            shoppingList = nil
+            changeButtonUI(sender)
+            callrequest(query: searchBarText(), sortType: currentSortType, page: pageCnt)
+        }
     
-    @objc func dateButtonClicked() {
-        currentSortType = .date
-        callrequest(query: searchBarText(), sortType: currentSortType, page: pageCnt)
-    }
+        @objc func dateButtonClicked(_ sender: UIButton) {
+            currentSortType = .date
+            shoppingList = nil
+            changeButtonUI(sender)
+            callrequest(query: searchBarText(), sortType: currentSortType, page: pageCnt)
+        }
     
-    @objc func priceHighButtonClicked() {
-        currentSortType = .dsc
-        callrequest(query: searchBarText(), sortType: currentSortType, page: pageCnt)
-    }
+        @objc func priceHighButtonClicked(_ sender: UIButton) {
+            currentSortType = .dsc
+            shoppingList = nil
+            changeButtonUI(sender)
+            callrequest(query: searchBarText(), sortType: currentSortType, page: pageCnt)
+        }
     
-    @objc func priceLowButtonClicked() {
-        currentSortType = .asc
-        callrequest(query: searchBarText(), sortType: currentSortType, page: pageCnt)
-    }
+        @objc func priceLowButtonClicked(_ sender: UIButton) {
+            currentSortType = .asc
+            shoppingList = nil
+            changeButtonUI(sender)
+            callrequest(query: searchBarText(), sortType: currentSortType, page: pageCnt)
+        }
+    
+        func changeButtonUI(_ sender: UIButton) {
+    
+            let buttons: [UIButton] = [searchView.accuracyButton, searchView.dateButton, searchView.priceHighButton, searchView.priceLowButton]
+    
+            if searchController.searchBar.text == "" {
+                sender.isEnabled = false
+            } else {
+                sender.isEnabled = true
+                sender.isSelected.toggle()
+                if sender.isSelected {
+                    sender.setTitleColor(.black, for: .normal)
+                    sender.backgroundColor = .white
+    
+                } else {
+                    sender.setTitleColor(.gray, for: .normal)
+                    sender.backgroundColor = .black
+                }
+    
+                   for button in buttons {
+                       if button != sender {
+                           button.isSelected = false
+                           button.setTitleColor(.gray, for: .normal)
+                           button.backgroundColor = .black
+                       }
+                   }
+            }
+        }
     
 }
 

@@ -15,11 +15,13 @@ class APIManager {
     func callRequest(query: String, sortType: SortType, page: Int, complitionHandler: @escaping (Result) ->Void) {
         
         guard let encodeQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {return}
-        let url = "https://openapi.naver.com/v1/search/shop.json?query=\(encodeQuery)&sort=\(sortType)&display=30&start=\(page)"
+        let url = "https://openapi.naver.com/v1/search/shop.json?query=\(encodeQuery)&display=30&start=\(page)&sort=\(sortType)"
         let headers:HTTPHeaders = [
             "X-Naver-Client-Id":APIkey.clientID,
             "X-Naver-Client-Secret":APIkey.clientSecret
         ]
+        
+        print(url)
         
         AF.request(url, headers: headers).validate().responseDecodable(of: Result.self)  { reponse in
             switch reponse.result {

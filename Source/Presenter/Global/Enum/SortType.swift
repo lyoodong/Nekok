@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum SortType {
+enum SortType:Int {
     case sim //정확도
     case date //날짜순
     case asc //가격순(오름 차순)
