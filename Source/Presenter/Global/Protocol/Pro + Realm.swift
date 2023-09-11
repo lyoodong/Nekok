@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-public enum writeType {
+enum writeType {
     case add
     case update
 }
@@ -20,22 +20,31 @@ protocol RealmDB {
     func sort<T: Object>(object:T.Type, byKeyPath: String, ascending:Bool) -> Results<T>
 }
 
-public class LDRealm:RealmDB {
-    static let shared = LDRealm()
-    
-    init() {}
+//Realm ropository pattern
+class LDRealm:RealmDB {
     
     let realm = try! Realm()
     
-    public func getRealmLocation() {
+    func getRealmLocation() {
         print("=====Realm 경로: ", realm.configuration.fileURL!)
     }
     
-    public func read<T: Object>( object: T.Type) -> Results<T> {
+    func read<T: Object>(object: T.Type) -> Results<T> {
+        
         return realm.objects(object)
     }
     
-    public func write<T: Object>(object: T, writetype: writeType )  {
+    func filter(searchBar:UISearchBar, complition:@escaping (Results<RealmModel>) -> ()) {
+        
+        let filteredData = read(object: RealmModel.self).where { result in
+            result.title.contains( searchBar.text ?? String().emptyStrng, options: .caseInsensitive)
+        }
+        
+        complition(filteredData)
+    }
+
+    
+    func write<T: Object>(object: T, writetype: writeType )  {
         
         switch writetype {
         case .add:
@@ -58,7 +67,7 @@ public class LDRealm:RealmDB {
         }
     }
     
-    public func delete<T: Object>(object: T)  {
+    func delete<T: Object>(object: T)  {
         do {
             try realm.write {
                 realm.delete(object)
@@ -68,9 +77,16 @@ public class LDRealm:RealmDB {
         }
     }
     
-    public func sort<T: Object>(object: T.Type, byKeyPath: String, ascending: Bool) -> Results<T>  {
+    func sort<T: Object>(object: T.Type, byKeyPath: String, ascending: Bool) -> Results<T>  {
         return realm.objects(object).sorted(byKeyPath: byKeyPath, ascending: ascending)
     }
     
-}
+    func searchDeleteObject(key:String) -> RealmModel {
+        guard let result = realm.object(ofType: RealmModel.self, forPrimaryKey: key)
+        else { return RealmModel() }
+        
+        return result
 
+    }
+    
+}
