@@ -177,10 +177,11 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         else { return UICollectionViewCell() }
         
         let productTitle = StringHelper.removepHTMLTags(from: title)
-        let productMallName = shoppingList?.items[indexPath.row].mallName
+        guard let productMallName = shoppingList?.items[indexPath.row].mallName
+        else { return UICollectionViewCell() }
         
         cell.productTitle.text = productTitle
-        cell.productMallName.text = productMallName
+        cell.productMallName.text = "[ \(productMallName) ]"
         
         guard let price = shoppingList?.items[indexPath.row].lprice
         else { return UICollectionViewCell() }

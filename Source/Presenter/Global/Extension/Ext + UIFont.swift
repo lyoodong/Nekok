@@ -8,7 +8,8 @@
 import UIKit
 
 extension UIFont {
-    static let basicFont = UIFont.systemFont(ofSize: 12, weight: .regular)
+    static let basicFont = UIFont.systemFont(ofSize: 12, weight: .bold)
+    static let productMall = UIFont.systemFont(ofSize: 12, weight: .regular)
     static let productTitle = UIFont.systemFont(ofSize: 14, weight: .regular)
     static let productPrice = UIFont.systemFont(ofSize: 16, weight: .bold)
 }

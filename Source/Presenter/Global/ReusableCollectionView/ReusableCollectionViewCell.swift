@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ReusableCollectionViewCell: BaseCollectionViewCell {
     
     //MARK: - Porperty
     var isLiked:Bool = false
+    var result:Item?
     
     //MARK: - UI property
     lazy var productImageView:UIImageView = {
@@ -26,14 +28,16 @@ class ReusableCollectionViewCell: BaseCollectionViewCell {
         let view = UILabel()
         view.textColor = .systemGray
         view.numberOfLines = 1
+        view.font = UIFont.productMall
         
         return view
     }()
     
     lazy var productTitle:UILabel = {
         let view = UILabel()
-        view.textColor = .systemGray
+        view.textColor = .white
         view.numberOfLines = 2
+        view.font = UIFont.productTitle
         
         return view
     }()
@@ -42,6 +46,7 @@ class ReusableCollectionViewCell: BaseCollectionViewCell {
         let view = UILabel()
         view.textColor = .white
         view.numberOfLines = 1
+        view.font = UIFont.productPrice
         
         return view
     }()
@@ -59,14 +64,30 @@ class ReusableCollectionViewCell: BaseCollectionViewCell {
         return view
     }()
     
+    let repo = LDRealm()
+    
     //MARK: - Define method
     override func viewSet() {
         [productImageView, productMallName, productTitle, productLprice, productLikeButton].forEach(addSubview)
     }
     
+    func shoppingList(item:Item) {
+        result = item
+    }
+    
     @objc func likeButtonClicked() {
-        isLiked.toggle()
         productLikeButton.isSelected.toggle()
+        
+        if let result = result {
+            if productLikeButton.isSelected {
+                let task = RealmModel(title: result.title, link: result.link, image: result.image, lprice: result.lprice, mallName: result.mallName, productID: result.productID)
+                repo.write(object: task, writetype: .add)
+                repo.getRealmLocation()
+            } else {
+                let deleteObeject = repo.searchDeleteObject(key: result.productID)
+                repo.delete(object: deleteObeject)
+            }
+        }
     }
     
     override func constraints() {
@@ -77,7 +98,7 @@ class ReusableCollectionViewCell: BaseCollectionViewCell {
         
         productMallName.snp.makeConstraints {
             $0.top.equalTo(productImageView.snp.bottom).offset(Constant.spacing / 2)
-            $0.leading.equalTo(self)
+            $0.horizontalEdges.equalTo(self)
         }
         
         productTitle.snp.makeConstraints {
@@ -87,7 +108,7 @@ class ReusableCollectionViewCell: BaseCollectionViewCell {
         
         productLprice.snp.makeConstraints {
             $0.top.equalTo(productTitle.snp.bottom)
-            $0.leading.equalTo(self)
+            $0.horizontalEdges.equalTo(self)
         }
         
         productLikeButton.snp.makeConstraints {

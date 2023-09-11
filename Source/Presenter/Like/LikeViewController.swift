@@ -107,7 +107,7 @@ extension LikeViewController: UICollectionViewDataSource, UICollectionViewDelega
         let title = likedShoppingList[indexPath.row].title
         
         cell.productTitle.text = StringHelper.removepHTMLTags(from: title)
-        cell.productMallName.text = likedShoppingList[indexPath.row].mallName
+        cell.productMallName.text = "[ \(likedShoppingList[indexPath.row].mallName) ]"
         
         let price = likedShoppingList[indexPath.row].lprice
         

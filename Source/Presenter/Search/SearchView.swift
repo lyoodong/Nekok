@@ -20,6 +20,7 @@ class SearchView: BaseView {
         view.layer.borderColor = UIColor.gray.cgColor
         view.layer.borderWidth = 1
         view.layer.cornerRadius = 10
+        view.titleLabel?.font = UIFont.basicFont
         view.sortType = .sim
         
         return view
@@ -33,6 +34,7 @@ class SearchView: BaseView {
         view.layer.borderColor = UIColor.gray.cgColor
         view.layer.borderWidth = 1
         view.layer.cornerRadius = 10
+        view.titleLabel?.font = UIFont.basicFont
         view.sortType = .date
         
         return view
@@ -46,6 +48,7 @@ class SearchView: BaseView {
         view.layer.borderColor = UIColor.gray.cgColor
         view.layer.borderWidth = 1
         view.layer.cornerRadius = 10
+        view.titleLabel?.font = UIFont.basicFont
         view.sortType = .asc
         
         return view
@@ -59,6 +62,7 @@ class SearchView: BaseView {
         view.layer.borderColor = UIColor.gray.cgColor
         view.layer.borderWidth = 1
         view.layer.cornerRadius = 10
+        view.titleLabel?.font = UIFont.basicFont
         view.sortType = .dsc
         
         return view
