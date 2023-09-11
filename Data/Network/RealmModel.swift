@@ -14,6 +14,8 @@ class RealmModel: Object {
     @Persisted var image: String
     @Persisted var lprice: String
     @Persisted var mallName: String
+    @Persisted var registeredDate: Date
+    @Persisted var isLiked: Bool
     @Persisted (primaryKey: true)var productID: String
     
     convenience init(title: String, link: String, image: String, lprice: String, mallName: String, productID: String   ) {
@@ -24,5 +26,7 @@ class RealmModel: Object {
         self.lprice = lprice
         self.mallName = mallName
         self.productID = productID
+        self.registeredDate = Date()
+        self.isLiked = false
     }
 }
