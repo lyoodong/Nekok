@@ -28,7 +28,7 @@ class ReusableCollectionViewCell: BaseCollectionViewCell {
         let view = UILabel()
         view.textColor = .systemGray
         view.numberOfLines = 1
-        view.font = UIFont.productMall
+        view.font = UIFont.regular12
         
         return view
     }()
@@ -37,7 +37,7 @@ class ReusableCollectionViewCell: BaseCollectionViewCell {
         let view = UILabel()
         view.textColor = .white
         view.numberOfLines = 2
-        view.font = UIFont.productTitle
+        view.font = UIFont.regular14
         
         return view
     }()
@@ -46,7 +46,7 @@ class ReusableCollectionViewCell: BaseCollectionViewCell {
         let view = UILabel()
         view.textColor = .white
         view.numberOfLines = 1
-        view.font = UIFont.productPrice
+        view.font = UIFont.bold16
         
         return view
     }()

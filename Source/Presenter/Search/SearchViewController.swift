@@ -32,6 +32,7 @@ class SearchViewController: BaseViewController {
     lazy var naviTitle:UILabel = {
         let view = UILabel()
         view.text = "쇼핑 검색"
+        view.font = .bold16
         return view
     }()
     
