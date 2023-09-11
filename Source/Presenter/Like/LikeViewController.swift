@@ -38,10 +38,13 @@ class LikeViewController: BaseViewController {
     override func loadView() {
         view = likeView
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        callRealmDB()
+    }
     
     override func viewSet() {
-        callRealmDB()
         hiddenButtons()
         likeCollectionViewSet()
         navigationbarSet()
