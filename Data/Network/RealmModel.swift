@@ -18,7 +18,7 @@ class RealmModel: Object {
     @Persisted var isLiked: Bool
     @Persisted (primaryKey: true)var productID: String
     
-    convenience init(title: String, link: String, image: String, lprice: String, mallName: String, productID: String   ) {
+    convenience init(title: String, link: String, image: String, lprice: String, mallName: String, productID: String ) {
         self.init()
         self.title = title
         self.link = link

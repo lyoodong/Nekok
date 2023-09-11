@@ -7,7 +7,9 @@
 
 import UIKit
 import Alamofire
+import RealmSwift
 import SnapKit
+
 
 class SearchViewController: BaseViewController {
     //MARK: - Porperty
@@ -23,6 +25,9 @@ class SearchViewController: BaseViewController {
         }
     }
     var currentSortType:SortType = .sim
+    
+    let repo = LDRealm()
+    var likedShoppingList:Results<RealmModel>?
     
     
     //MARK: - UI property
@@ -41,6 +46,14 @@ class SearchViewController: BaseViewController {
         view = searchView
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        callRealmDB()
+    }
+    
+    func callRealmDB() {
+        likedShoppingList = repo.read(object: RealmModel.self)
+    }
+
     override func viewSet() {
         super.viewSet()
         searchCollectionViewSet()
@@ -206,8 +219,24 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
             }
         }
         
+        guard let likedShoppingList else { return UICollectionViewCell() }
+        var likedShoppingDict: [String: Bool] = [:]
+
+        for item in likedShoppingList {
+            likedShoppingDict[item.productID] = item.isLiked
+        }
+
+        if let productID = shoppingList?.items[indexPath.row].productID {
+            if let isLiked = likedShoppingDict[productID] {
+                shoppingList?.items[indexPath.row].isLiked = isLiked
+                print(isLiked)
+            }
+        }
+        
+        
         guard let result = shoppingList?.items[indexPath.row] else { return UICollectionViewCell()}
         cell.shoppingList(item: result)
+        
         
         return cell
     }
