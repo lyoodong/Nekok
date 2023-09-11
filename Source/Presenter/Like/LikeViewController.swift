@@ -28,6 +28,7 @@ class LikeViewController: BaseViewController {
     lazy var naviTitle:UILabel = {
         let view = UILabel()
         view.text = "좋아요 목록"
+        view.font = .bold16
         return view
     }()
     
