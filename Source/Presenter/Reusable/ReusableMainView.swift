@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class SearchView: BaseView {
+class ReusableMainView: BaseView {
     //MARK: - Porperty
     
     //MARK: - UI property
@@ -39,6 +39,20 @@ class SearchView: BaseView {
         
         return view
     }()
+
+    //정렬 버튼 가격 낮은 순
+    lazy var priceLowButton: UIButton = {
+        let view = UIButton()
+        view.setTitle("  가격 낮은순  ", for: .normal)
+        view.setTitleColor(.gray, for: .normal)
+        view.layer.borderColor = UIColor.gray.cgColor
+        view.layer.borderWidth = 1
+        view.layer.cornerRadius = 10
+        view.titleLabel?.font = UIFont.basicFont
+        view.sortType = .dsc
+        
+        return view
+    }()
     
     //정렬 버튼 가격 높은 순
     lazy var priceHighButton: UIButton = {
@@ -50,20 +64,6 @@ class SearchView: BaseView {
         view.layer.cornerRadius = 10
         view.titleLabel?.font = UIFont.basicFont
         view.sortType = .asc
-        
-        return view
-    }()
-    
-    //정렬 버튼 가격 낮은 순
-    lazy var priceLowButton: UIButton = {
-        let view = UIButton()
-        view.setTitle("  가격 낮은순  ", for: .normal)
-        view.setTitleColor(.gray, for: .normal)
-        view.layer.borderColor = UIColor.gray.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 10
-        view.titleLabel?.font = UIFont.basicFont
-        view.sortType = .dsc
         
         return view
     }()
@@ -89,7 +89,7 @@ class SearchView: BaseView {
     
     //MARK: - Define method
     override func viewSet() {
-        [accuracyButton, dateButton, priceHighButton, priceLowButton, searchCollectionView].forEach(addSubview)
+        [accuracyButton, dateButton,  priceLowButton, priceHighButton, searchCollectionView].forEach(addSubview)
     }
     
     override func constraints() {

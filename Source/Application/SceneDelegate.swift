@@ -15,6 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         
+        //Intial View 초기화
         window = UIWindow(windowScene: scene)
         let vc = TabBarViewController()
         window?.rootViewController = vc

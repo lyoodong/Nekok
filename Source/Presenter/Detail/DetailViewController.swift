@@ -7,20 +7,39 @@
 
 import UIKit
 import WebKit
+import RealmSwift
 import SnapKit
 
 class DetailViewController: BaseViewController {
     //MARK: - Porperty
-    var isLiked:Bool = true
+    
+    //현재 좋아요 상태
+    var isLiked:Bool = false {
+        didSet {
+            likeImageSet()
+        }
+    }
+
     var urlString:String?
+    
+    //Realm Repository
+    let repo = LDRealm()
+    
+    //productID
+    var productID = ""
+    
     //MARK: - UIporperty
+    
+    //WEBVIEW
     var webView = WKWebView()
     
+    //네비게이션 타이틀
     lazy var naviTitle:UILabel = {
         let view = UILabel()
         return view
     }()
-
+    
+    //좋아요 버튼
     lazy var likeButton:UIBarButtonItem = {
         let view = UIBarButtonItem()
         view.target = self
@@ -30,14 +49,43 @@ class DetailViewController: BaseViewController {
     
     //MARK: - Define method
     override func viewWillAppear(_ animated: Bool) {
+        checkLike()
         likeImageSet()
     }
     
     @objc func likeButtonClicked() {
         isLiked.toggle()
         likeImageSet()
+        changeLike()
     }
     
+    //좋아요 상태 변경
+    func changeLike() {
+        let realm = try! Realm()
+
+        try! realm.write {
+            let item = repo.readByPrimaryKey(object: RealmModel.self, productID: productID)
+            item.isLiked = isLiked
+            
+            if isLiked {
+                repo.write(object: item, writetype: .update)
+                repo.getRealmLocation()
+            } else {
+                let deleteObject = repo.searchDeleteObject(key: item.productID)
+                realm.delete(deleteObject)
+            }
+        }
+    }
+    
+    //좋아요 상태 검사
+    func checkLike() {
+        print(productID)
+        let item = repo.readByPrimaryKey(object: RealmModel.self, productID: productID)
+        print(item.isLiked)
+        isLiked = item.isLiked
+    }
+    
+    //좋아요 상태에 따른 버튼 이미지
     func likeImageSet() {
         if isLiked {
             likeButton.image = UIImage(systemName: "heart.fill")?.withTintColor(.white)
@@ -46,12 +94,14 @@ class DetailViewController: BaseViewController {
         }
     }
     
+    
     override func viewSet() {
+        webViewSet()
         navigationbarSet()
         tabBarSet()
-        webViewSet()
     }
     
+    //웹뷰 세팅
     func webViewSet() {
         guard let urlString else { return }
         let url = URL(string: urlString)
@@ -63,6 +113,7 @@ class DetailViewController: BaseViewController {
         view.addSubview(webView)
     }
     
+    //네비바 세팅
     func navigationbarSet() {
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = .black
@@ -72,15 +123,17 @@ class DetailViewController: BaseViewController {
         navigationController?.navigationBar.tintColor = .white
         navigationItem.titleView = naviTitle
         navigationItem.rightBarButtonItem = likeButton
-
+        
     }
     
+    //탭바 세팅
     func tabBarSet() {
         let appearance = UITabBarAppearance()
         appearance.backgroundColor = .black
         tabBarController?.tabBar.standardAppearance = appearance
     }
     
+    //오토레이아웃
     override func constraints() {
         webView.snp.makeConstraints {
             $0.edges.equalTo(view.safeAreaLayoutGuide)

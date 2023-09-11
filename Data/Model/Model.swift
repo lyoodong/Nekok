@@ -22,6 +22,7 @@ struct Item: Codable {
     let lprice: String
     let mallName: String
     let productID: String
+    var isLiked:Bool = false
 
     enum CodingKeys: String, CodingKey {
         case title, link, image, lprice, mallName

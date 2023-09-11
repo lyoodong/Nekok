@@ -9,6 +9,7 @@ import Foundation
 
 class StringHelper {
     
+    //HTMLTags제거하는 함수
     static func removepHTMLTags(from htmlString: String) -> String {
         let htmlTagPattern = "<[^>]+>"
         let regex = try! NSRegularExpression(pattern: htmlTagPattern, options: .caseInsensitive)
@@ -24,6 +25,7 @@ class StringHelper {
         return strippedString
     }
     
+    //금액에 콤마 삽입
     static func commaSeparator(price:String) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal

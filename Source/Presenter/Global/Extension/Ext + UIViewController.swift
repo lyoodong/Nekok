@@ -17,12 +17,6 @@ extension UIViewController: ReusableIDF {
 //transition
 extension UIViewController {
     
-    enum TransitionStyle {
-        case present
-        case presentNavigation
-        case push
-    }
-    
     func LDTransition (viewController: UIViewController, style: TransitionStyle, modalPresentationStyle: UIModalPresentationStyle = .automatic) {
         let vc = viewController
         

@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 extension UIButton {
     var sortType: SortType? {
         get {

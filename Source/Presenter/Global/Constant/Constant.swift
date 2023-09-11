@@ -8,7 +8,6 @@
 import Foundation
 
 class Constant {
-    
     // UI간격
     static let spacing: CGFloat = 16
 }

@@ -27,6 +27,6 @@ class RealmModel: Object {
         self.mallName = mallName
         self.productID = productID
         self.registeredDate = Date()
-        self.isLiked = false
+        self.isLiked = true
     }
 }

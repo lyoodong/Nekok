@@ -11,10 +11,12 @@ import RealmSwift
 class ReusableCollectionViewCell: BaseCollectionViewCell {
     
     //MARK: - Porperty
-    var isLiked:Bool = false
     var result:Item?
+    let repo = LDRealm()
     
     //MARK: - UI property
+    
+    //상품 이미지
     lazy var productImageView:UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
@@ -24,6 +26,7 @@ class ReusableCollectionViewCell: BaseCollectionViewCell {
         return view
     }()
     
+    //상품 판매처
     lazy var productMallName:UILabel =  {
         let view = UILabel()
         view.textColor = .systemGray
@@ -33,6 +36,7 @@ class ReusableCollectionViewCell: BaseCollectionViewCell {
         return view
     }()
     
+    //상품 품명
     lazy var productTitle:UILabel = {
         let view = UILabel()
         view.textColor = .white
@@ -42,6 +46,7 @@ class ReusableCollectionViewCell: BaseCollectionViewCell {
         return view
     }()
     
+    //상품 가격
     lazy var productLprice:UILabel =  {
         let view = UILabel()
         view.textColor = .white
@@ -51,45 +56,55 @@ class ReusableCollectionViewCell: BaseCollectionViewCell {
         return view
     }()
     
+    //좋아요 버튼
     lazy var productLikeButton:UIButton =  {
         let view = UIButton()
         let unselectedimage = UIImage(systemName: "heart")
         let selectedimage = UIImage(systemName: "heart.fill")
-        view.tintColor = .black
-        view.backgroundColor = .white
-        view.addTarget(self, action: #selector(likeButtonClicked), for: .touchUpInside)
         view.setImage(unselectedimage, for: .normal)
         view.setImage(selectedimage, for: .selected)
+        view.tintColor = .black
+        view.backgroundColor = .white
         view.layer.cornerRadius = Constant.spacing
+        view.addTarget(self, action: #selector(likeButtonClicked), for: .touchUpInside)
         return view
     }()
     
-    let repo = LDRealm()
-    
     //MARK: - Define method
+    
+    //addsubview
     override func viewSet() {
         [productImageView, productMallName, productTitle, productLprice, productLikeButton].forEach(addSubview)
     }
     
+    //cell 재사용시 이미지 미리 제거
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        productImageView.image = nil
+    }
+    
+    //선택한 아이템에 대한 값 전달
     func shoppingList(item:Item) {
         result = item
     }
     
+    //좋아요 버튼 클릭
     @objc func likeButtonClicked() {
         productLikeButton.isSelected.toggle()
         
+        //버튼 클릭 시 realDB에 추가 반대로 클릭 해제 시 realmDB에서 삭제
         if let result = result {
-            if productLikeButton.isSelected {
+            if productLikeButton.isSelected == true {
                 let task = RealmModel(title: result.title, link: result.link, image: result.image, lprice: result.lprice, mallName: result.mallName, productID: result.productID)
                 repo.write(object: task, writetype: .add)
-                repo.getRealmLocation()
-            } else {
+            } else if productLikeButton.isSelected == false {
                 let deleteObeject = repo.searchDeleteObject(key: result.productID)
                 repo.delete(object: deleteObeject)
             }
         }
     }
     
+    //오토레이아웃
     override func constraints() {
         productImageView.snp.makeConstraints {
             $0.top.horizontalEdges.equalTo(self)
