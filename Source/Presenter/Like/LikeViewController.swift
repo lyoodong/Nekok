@@ -6,10 +6,10 @@
 //
 
 import UIKit
+import RealmSwift
 
 class LikeViewController: BaseViewController {
-    //MARK: - property
-    var likedShoppingList:Result? {
+    var likedShoppingList: Results<RealmModel>? {
         didSet {
             likeView.searchCollectionView.reloadData()
         }
@@ -31,16 +31,35 @@ class LikeViewController: BaseViewController {
         return view
     }()
     
+    let repo = LDRealm()
+    
     //MARK: - Define method
     override func loadView() {
         view = likeView
-        hiddenButtons()
     }
+
     
     override func viewSet() {
+        callRealmDB()
+        hiddenButtons()
         likeCollectionViewSet()
         navigationbarSet()
         searchControllerSet()
+    }
+    
+    func callRealmDB() {
+        likedShoppingList = repo.read(object: RealmModel.self)
+    }
+    
+    func hiddenButtons() {
+        let buttons:[UIButton] = [likeView.accuracyButton, likeView.dateButton, likeView.priceHighButton, likeView.priceLowButton]
+        
+        buttons.forEach { UIButton in
+            UIButton.isHidden = true
+        }
+        likeView.accuracyButton.snp.makeConstraints {
+            $0.height.equalTo(0)
+        }
     }
     
     func likeCollectionViewSet() {
@@ -63,47 +82,40 @@ class LikeViewController: BaseViewController {
         navigationItem.searchController = searchController
     }
     
-    func hiddenButtons() {
-        let buttons:[UIButton] = [likeView.accuracyButton, likeView.dateButton, likeView.priceHighButton, likeView.priceLowButton]
-        
-        buttons.forEach { UIButton in
-            UIButton.isHidden = true
-        }
-    }
-    
     func searchBarText() -> String {
-        guard let searchText = searchController.searchBar.text else { return ""}
+        guard let searchText = searchController.searchBar.text else { return String().emptyStrng}
         return searchText
     }
     
     override func constraints() {
-       
+        
     }
-
+    
 }
 
 extension LikeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return likedShoppingList?.items.count ?? 0
+        guard let likedShoppingList else { return 0 }
+        return likedShoppingList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReusableCollectionViewCell.IDF, for: indexPath) as? ReusableCollectionViewCell else { return UICollectionViewCell() }
         
-        guard let title = likedShoppingList?.items[indexPath.row].title
-        else { return UICollectionViewCell() }
+        guard let likedShoppingList else { return UICollectionViewCell() }
+        let title = likedShoppingList[indexPath.row].title
         
         cell.productTitle.text = StringHelper.removepHTMLTags(from: title)
-        cell.productMallName.text = likedShoppingList?.items[indexPath.row].mallName
+        cell.productMallName.text = likedShoppingList[indexPath.row].mallName
         
-        guard let price = likedShoppingList?.items[indexPath.row].lprice
-        else { return UICollectionViewCell() }
+        let price = likedShoppingList[indexPath.row].lprice
         
         cell.productLprice.text = StringHelper.commaSeparator(price: price)
         
+        guard let value = self.likedShoppingList?[indexPath.row].image else { return UICollectionViewCell() }
         DispatchQueue.global().async {
-            if let url = URL(string: self.likedShoppingList?.items[indexPath.row].image ?? ""){
+            if let url = URL(string: value){
                 let data = try! Data(contentsOf: url)
                 let image = UIImage(data: data)
                 DispatchQueue.main.async {
@@ -116,10 +128,12 @@ extension LikeViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        guard let productID = likedShoppingList?.items[indexPath.row].productID else { return }
+        guard let likedShoppingList else { return }
+        
+        let productID = likedShoppingList[indexPath.row].productID
         let url = "https://msearch.shopping.naver.com/product/" + productID
         
-        guard let productTitle = likedShoppingList?.items[indexPath.row].title else { return }
+        let productTitle = likedShoppingList[indexPath.row].title
         let vc = DetailViewController()
         vc.urlString = url
         vc.naviTitle.text = StringHelper.removepHTMLTags(from: productTitle)
@@ -130,15 +144,24 @@ extension LikeViewController: UICollectionViewDataSource, UICollectionViewDelega
 
 extension LikeViewController: UISearchBarDelegate {
     
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
+        if searchText == String().emptyStrng {
+            callRealmDB()
+        } else {
+            repo.filter(searchBar: searchBar) { result in
+                self.likedShoppingList = result
+            }
+        }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.likedShoppingList = nil
+        callRealmDB()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-
+        repo.filter(searchBar: searchBar) { result in
+            self.likedShoppingList = result
+        }
     }
 }

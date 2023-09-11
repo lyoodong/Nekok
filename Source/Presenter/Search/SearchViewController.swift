@@ -24,6 +24,7 @@ class SearchViewController: BaseViewController {
     }
     var currentSortType:SortType = .sim
     
+    
     //MARK: - UI property
     let searchView = SearchView()
     let searchController = UISearchController()
@@ -99,63 +100,64 @@ class SearchViewController: BaseViewController {
     }
     
     func searchBarText() -> String {
-        guard let searchText = searchController.searchBar.text else { return ""}
+        guard let searchText = searchController.searchBar.text else { return String().emptyStrng}
         return searchText
     }
     
-        @objc func accuracyButtonClicked(_ sender: UIButton) {
-            currentSortType = .sim
-            shoppingList = nil
-            changeButtonUI(sender)
-            callrequest(query: searchBarText(), sortType: currentSortType, page: pageCnt)
-        }
+    @objc func accuracyButtonClicked(_ sender: UIButton) {
+        currentSortType = .sim
+        shoppingList = nil
+        changeButtonUI(sender)
+        callrequest(query: searchBarText(), sortType: currentSortType, page: pageCnt)
+    }
     
-        @objc func dateButtonClicked(_ sender: UIButton) {
-            currentSortType = .date
-            shoppingList = nil
-            changeButtonUI(sender)
-            callrequest(query: searchBarText(), sortType: currentSortType, page: pageCnt)
-        }
+    @objc func dateButtonClicked(_ sender: UIButton) {
+        currentSortType = .date
+        shoppingList = nil
+        changeButtonUI(sender)
+        callrequest(query: searchBarText(), sortType: currentSortType, page: pageCnt)
+    }
     
-        @objc func priceHighButtonClicked(_ sender: UIButton) {
-            currentSortType = .dsc
-            shoppingList = nil
-            changeButtonUI(sender)
-            callrequest(query: searchBarText(), sortType: currentSortType, page: pageCnt)
-        }
+    @objc func priceHighButtonClicked(_ sender: UIButton) {
+        currentSortType = .dsc
+        shoppingList = nil
+        changeButtonUI(sender)
+        callrequest(query: searchBarText(), sortType: currentSortType, page: pageCnt)
+    }
     
-        @objc func priceLowButtonClicked(_ sender: UIButton) {
-            currentSortType = .asc
-            shoppingList = nil
-            changeButtonUI(sender)
-            callrequest(query: searchBarText(), sortType: currentSortType, page: pageCnt)
-        }
+    @objc func priceLowButtonClicked(_ sender: UIButton) {
+        currentSortType = .asc
+        shoppingList = nil
+        changeButtonUI(sender)
+        callrequest(query: searchBarText(), sortType: currentSortType, page: pageCnt)
+    }
     
-        func changeButtonUI(_ sender: UIButton) {
-            let buttons: [UIButton] = [searchView.accuracyButton, searchView.dateButton, searchView.priceHighButton, searchView.priceLowButton]
-            if searchController.searchBar.text == "" {
-                sender.isEnabled = false
+    func changeButtonUI(_ sender: UIButton) {
+        let buttons: [UIButton] = [searchView.accuracyButton, searchView.dateButton, searchView.priceHighButton, searchView.priceLowButton]
+        if searchController.searchBar.text == String().emptyStrng {
+            sender.isEnabled = false
+        } else {
+            sender.isEnabled = true
+            sender.isSelected.toggle()
+            if sender.isSelected {
+                sender.setTitleColor(.black, for: .normal)
+                sender.backgroundColor = .white
+                
             } else {
-                sender.isEnabled = true
-                sender.isSelected.toggle()
-                if sender.isSelected {
-                    sender.setTitleColor(.black, for: .normal)
-                    sender.backgroundColor = .white
-    
-                } else {
-                    sender.setTitleColor(.gray, for: .normal)
-                    sender.backgroundColor = .black
+                sender.setTitleColor(.gray, for: .normal)
+                sender.backgroundColor = .black
+            }
+            
+            for button in buttons {
+                if button != sender {
+                    button.isSelected = false
+                    button.setTitleColor(.gray, for: .normal)
+                    button.backgroundColor = .black
                 }
-    
-                   for button in buttons {
-                       if button != sender {
-                           button.isSelected = false
-                           button.setTitleColor(.gray, for: .normal)
-                           button.backgroundColor = .black
-                       }
-                   }
             }
         }
+    }
+    
     
 }
 
@@ -169,26 +171,42 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReusableCollectionViewCell.IDF, for: indexPath) as? ReusableCollectionViewCell else { return UICollectionViewCell() }
         
+        
+        
         guard let title = shoppingList?.items[indexPath.row].title
         else { return UICollectionViewCell() }
         
-        cell.productTitle.text = StringHelper.removepHTMLTags(from: title)
-        cell.productMallName.text = shoppingList?.items[indexPath.row].mallName
+        let productTitle = StringHelper.removepHTMLTags(from: title)
+        let productMallName = shoppingList?.items[indexPath.row].mallName
+        
+        cell.productTitle.text = productTitle
+        cell.productMallName.text = productMallName
         
         guard let price = shoppingList?.items[indexPath.row].lprice
         else { return UICollectionViewCell() }
         
-        cell.productLprice.text = StringHelper.commaSeparator(price: price)
+        let productLprice = StringHelper.commaSeparator(price: price)
+        
+        cell.productLprice.text = productLprice
+        
+        guard let productID = shoppingList?.items[indexPath.row].productID else { return UICollectionViewCell() }
+        let link = "https://msearch.shopping.naver.com/product/" + productID
         
         DispatchQueue.global().async {
-            if let url = URL(string: self.shoppingList?.items[indexPath.row].image ?? ""){
+            let imageLink = self.shoppingList?.items[indexPath.row].image ?? String().emptyStrng
+            if let url = URL(string: imageLink){
                 let data = try! Data(contentsOf: url)
                 let image = UIImage(data: data)
                 DispatchQueue.main.async {
                     cell.productImageView.image = image
+                    
                 }
             }
         }
+        
+        guard let result = shoppingList?.items[indexPath.row] else { return UICollectionViewCell()}
+        cell.shoppingList(item: result)
+        
         return cell
     }
     
@@ -224,9 +242,14 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
 
 extension SearchViewController: UISearchBarDelegate {
     
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        guard let query = searchBar.text else { return }
-        callrequest(query: query, sortType: currentSortType, page: 1)
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchText == String().emptyStrng {
+            shoppingList = nil
+        } else {
+            guard let query = searchBar.text else { return }
+            callrequest(query: query, sortType: currentSortType, page: 1)
+        }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -236,10 +259,6 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let query = searchBar.text else { return }
         callrequest(query: query, sortType: currentSortType, page: 1)
-//        let buttons: [UIButton] = [searchView.accuracyButton, searchView.dateButton, searchView.priceHighButton, searchView.priceLowButton]
-//        buttons.forEach { UIButton in
-//            UIButton.isHidden = false
-//        }
     }
 }
 
