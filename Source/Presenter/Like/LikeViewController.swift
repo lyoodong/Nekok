@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import Kingfisher
 
 class LikeViewController: BaseViewController {
     
@@ -32,6 +33,9 @@ class LikeViewController: BaseViewController {
     //seerchBar를 넣을 UISearchController
     let searchController = UISearchController()
     
+    //정렬 버튼 배열
+    lazy var buttons: [UIButton] = [likeView.accuracyButton, likeView.dateButton, likeView.priceHighButton, likeView.priceLowButton]
+    
     //네비게이션 타이틀
     lazy var naviTitle:UILabel = {
         let view = UILabel()
@@ -52,7 +56,11 @@ class LikeViewController: BaseViewController {
         super.viewWillAppear(animated)
         callRealmDB()
     }
-
+    
+    //Realm의 데이터를 likedShoppingList에 저장
+    func callRealmDB() {
+        likedShoppingList = repo.read(object: RealmModel.self)
+    }
     
     override func viewSet() {
         hiddenButtons()
@@ -61,18 +69,9 @@ class LikeViewController: BaseViewController {
         searchControllerSet()
     }
     
-    //Realm의 데이터를 likedShoppingList에 저장
-    func callRealmDB() {
-        likedShoppingList = repo.read(object: RealmModel.self)
-    }
-    
     //버튼 히든 처리
     func hiddenButtons() {
-        let buttons:[UIButton] = [likeView.accuracyButton, likeView.dateButton, likeView.priceHighButton, likeView.priceLowButton]
-        
-        buttons.forEach { UIButton in
-            UIButton.isHidden = true
-        }
+        buttons.forEach { $0.isHidden = true }
         likeView.accuracyButton.snp.makeConstraints {
             $0.height.equalTo(0)
         }
@@ -100,17 +99,11 @@ class LikeViewController: BaseViewController {
         searchController.searchBar.barStyle = .black
         navigationItem.searchController = searchController
     }
-    
-    //서치바에서 현재 검색하고 있는 텍스트
-    func searchBarText() -> String {
-        guard let searchText = searchController.searchBar.text else { return String().emptyStrng}
-        return searchText
-    }
 }
 
 extension LikeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
-    //셀 갯수
+    //셀 개수
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let likedShoppingList else { return 0 }
         return likedShoppingList.count
@@ -125,17 +118,16 @@ extension LikeViewController: UICollectionViewDataSource, UICollectionViewDelega
         let title = likedShoppingList[indexPath.row].title
         let price = likedShoppingList[indexPath.row].lprice
     
+        //Cell에 데이터 할당
         cell.productTitle.text = StringHelper.removepHTMLTags(from: title)
         cell.productMallName.text = "[ \(likedShoppingList[indexPath.row].mallName) ]"
         cell.productLprice.text = StringHelper.commaSeparator(price: price)
         
-        let value = self.likedShoppingList?[indexPath.row].image ?? ""
+        let imageLink = likedShoppingList[indexPath.row].image
         DispatchQueue.global().async {
-            if let url = URL(string: value){
-                let data = try! Data(contentsOf: url)
-                let image = UIImage(data: data)
+            if let url = URL(string: imageLink) {
                 DispatchQueue.main.async {
-                    cell.productImageView.image = image
+                    cell.productImageView.kf.setImage(with: url)
                 }
             }
         }
@@ -160,10 +152,13 @@ extension LikeViewController: UICollectionViewDataSource, UICollectionViewDelega
         let vc = DetailViewController()
         vc.urlString = url
         vc.naviTitle.text = StringHelper.removepHTMLTags(from: productTitle)
-        vc.productID = productID
+        
+        let result = likedShoppingList[indexPath.row]
+        let item = Item(title: result.title, link: result.link , image: result.image, lprice: result.lprice, mallName: result.mallName, productID: result.productID)
+    
+        vc.selectedData = item
         LDTransition(viewController: vc, style: .push)
     }
-    
 }
 
 extension LikeViewController: UISearchBarDelegate {

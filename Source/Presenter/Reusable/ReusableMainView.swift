@@ -77,6 +77,7 @@ class ReusableMainView: BaseView {
         return view
     }()
     
+    // 컬렉션 뷰 설정
     func searchCollectionViewwLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = Constant.spacing / 2
@@ -88,10 +89,12 @@ class ReusableMainView: BaseView {
     }
     
     //MARK: - Define method
+    
     override func viewSet() {
-        [accuracyButton, dateButton,  priceLowButton, priceHighButton, searchCollectionView].forEach(addSubview)
+        [accuracyButton, dateButton, priceLowButton, priceHighButton, searchCollectionView].forEach(addSubview)
     }
     
+    //레이아웃 설정
     override func constraints() {
         accuracyButton.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaLayoutGuide)

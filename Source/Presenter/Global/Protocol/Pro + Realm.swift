@@ -20,12 +20,14 @@ protocol RealmDB {
 class LDRealm:RealmDB {
     
     let realm = try! Realm()
-
+    
+    //불러오기
     func read<T: Object>(object: T.Type) -> Results<T> {
         
         return realm.objects(object).sorted(byKeyPath: "registeredDate", ascending: false)
     }
-
+    
+    //불러오기
     func write<T: Object>(object: T, writetype: WriteType )  {
         
         switch writetype {
@@ -49,19 +51,20 @@ class LDRealm:RealmDB {
         }
     }
     
+    //삭제
     func delete<T: Object>(object: T)  {
-        do {
-            try realm.write {
-                realm.delete(object)
-            }
-        } catch {
-            print(error)
+        
+        try! realm.write {
+            realm.delete(object)
+            
         }
     }
     
+    //정렬
     func sort<T: Object>(object: T.Type, byKeyPath: String, ascending: Bool) -> Results<T>  {
         return realm.objects(object).sorted(byKeyPath: byKeyPath, ascending: ascending)
     }
+    
     //검색어로 결과 필터링
     func filter(searchBar:UISearchBar, complition:@escaping (Results<RealmModel>) -> ()) {
         
@@ -71,6 +74,7 @@ class LDRealm:RealmDB {
         
         complition(filteredData)
     }
+    
     
     //파일 경로
     func getRealmLocation() {
@@ -89,7 +93,7 @@ class LDRealm:RealmDB {
         else { return RealmModel() }
         
         return result
-
     }
-    
 }
+
+

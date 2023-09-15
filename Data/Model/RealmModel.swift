@@ -9,6 +9,7 @@ import Foundation
 import RealmSwift
 
 class RealmModel: Object {
+    @Persisted (primaryKey: true)var productID: String //기본키
     @Persisted var title: String
     @Persisted var link: String
     @Persisted var image: String
@@ -16,7 +17,6 @@ class RealmModel: Object {
     @Persisted var mallName: String
     @Persisted var registeredDate: Date
     @Persisted var isLiked: Bool
-    @Persisted (primaryKey: true)var productID: String
     
     convenience init(title: String, link: String, image: String, lprice: String, mallName: String, productID: String ) {
         self.init()

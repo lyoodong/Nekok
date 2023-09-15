@@ -14,20 +14,16 @@ class DetailViewController: BaseViewController {
     //MARK: - Porperty
     
     //현재 좋아요 상태
-    var isLiked:Bool = false {
-        didSet {
-            likeImageSet()
-        }
-    }
-
+    var isLiked:Bool = false
+    
+    //상품 Url
     var urlString:String?
     
     //Realm Repository
     let repo = LDRealm()
-    
-    //productID
-    var productID = ""
-    
+
+    //이전 페이지에서 선택된 아이템
+    var selectedData: Item?
     //MARK: - UIporperty
     
     //WEBVIEW
@@ -49,56 +45,26 @@ class DetailViewController: BaseViewController {
     
     //MARK: - Define method
     override func viewWillAppear(_ animated: Bool) {
-        checkLike()
-        likeImageSet()
+        print(isLiked)
+        ConvertData.shared.likeImageSet(likeButton, isLiked: isLiked)
     }
     
     @objc func likeButtonClicked() {
         isLiked.toggle()
-        likeImageSet()
-        changeLike()
+        selectedData?.isLiked = isLiked
+        
+        guard let selectedData = selectedData else { return }
+        let productID = selectedData.productID
+        
+        ConvertData.shared.changeButtonStatus(object: ConvertData.shared.toRealmModel(selectedData), key: productID, isLiked: isLiked)
+        ConvertData.shared.likeImageSet(likeButton, isLiked: isLiked)
     }
-    
-    //좋아요 상태 변경
-    func changeLike() {
-        let realm = try! Realm()
-
-        try! realm.write {
-            let item = repo.readByPrimaryKey(object: RealmModel.self, productID: productID)
-            item.isLiked = isLiked
-            
-            if isLiked {
-                repo.write(object: item, writetype: .update)
-                repo.getRealmLocation()
-            } else {
-                let deleteObject = repo.searchDeleteObject(key: item.productID)
-                realm.delete(deleteObject)
-            }
-        }
-    }
-    
-    //좋아요 상태 검사
-    func checkLike() {
-        print(productID)
-        let item = repo.readByPrimaryKey(object: RealmModel.self, productID: productID)
-        print(item.isLiked)
-        isLiked = item.isLiked
-    }
-    
-    //좋아요 상태에 따른 버튼 이미지
-    func likeImageSet() {
-        if isLiked {
-            likeButton.image = UIImage(systemName: "heart.fill")?.withTintColor(.white)
-        } else {
-            likeButton.image = UIImage(systemName: "heart")
-        }
-    }
-    
     
     override func viewSet() {
         webViewSet()
         navigationbarSet()
         tabBarSet()
+        checkLike()
     }
     
     //웹뷰 세팅
@@ -123,6 +89,7 @@ class DetailViewController: BaseViewController {
         navigationController?.navigationBar.tintColor = .white
         navigationItem.titleView = naviTitle
         navigationItem.rightBarButtonItem = likeButton
+        ConvertData.shared.likeImageSet(likeButton, isLiked: isLiked)
         
     }
     
@@ -131,6 +98,15 @@ class DetailViewController: BaseViewController {
         let appearance = UITabBarAppearance()
         appearance.backgroundColor = .black
         tabBarController?.tabBar.standardAppearance = appearance
+    }
+    
+    //좋아요 상태 검사
+    func checkLike() {
+        guard let selectedData = selectedData else { return }
+        let item = ConvertData.shared.toRealmModel(selectedData)
+        ConvertData.shared.currentLikeStatus(productID: item.productID) { result in
+            isLiked = result
+        }
     }
     
     //오토레이아웃

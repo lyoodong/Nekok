@@ -34,3 +34,32 @@ extension UIViewController {
         }
     }
 }
+
+//alert
+extension UIViewController {
+
+    func LDAlert(alertCase: AlertType, title: String?, message: String?, preferredStyle: UIAlertController.Style , firstTitle:String?, firsthandler: ((UIAlertAction) -> Void)?, secondTitle: String?, secondhandler: ((UIAlertAction) -> Void)? ) -> UIAlertController {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
+        
+        let firstAction = UIAlertAction(title: firstTitle, style: .default, handler: firsthandler)
+        let secondAction = UIAlertAction(title: secondTitle, style: .default, handler: secondhandler)
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+
+        alert.addAction(cancel)
+        
+        switch alertCase {
+        case .oneway:
+             return alert
+        case .twoway:
+            alert.addAction(firstAction)
+            return alert
+        case .threeway:
+            alert.addAction(firstAction)
+            alert.addAction(secondAction)
+            return alert
+
+        }
+    }
+
+}

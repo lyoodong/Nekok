@@ -34,7 +34,7 @@ class StringHelper {
         else { return "Int 변환 실패"}
         
         guard let formattedPrice = formatter.string(from: intPrice as NSNumber)
-        else { return "포매팅 실패"}
+        else { return "포멧팅 실패"}
     
         return formattedPrice + " 원"
     }

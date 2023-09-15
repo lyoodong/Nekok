@@ -10,7 +10,7 @@ import RealmSwift
 
 class ReusableCollectionViewCell: BaseCollectionViewCell {
     
-    //MARK: - Porperty
+    //MARK: - Property
     var result:Item?
     let repo = LDRealm()
     
@@ -83,6 +83,11 @@ class ReusableCollectionViewCell: BaseCollectionViewCell {
         productImageView.image = nil
     }
     
+    //좋아요 버튼 이미지 변경
+    func setProductLikeButtonImage(_ isLiked:Bool) {
+        ConvertData.shared.likeImageSet(productLikeButton, isLiked)
+    }
+    
     //선택한 아이템에 대한 값 전달
     func shoppingList(item:Item) {
         result = item
@@ -97,6 +102,7 @@ class ReusableCollectionViewCell: BaseCollectionViewCell {
             if productLikeButton.isSelected == true {
                 let task = RealmModel(title: result.title, link: result.link, image: result.image, lprice: result.lprice, mallName: result.mallName, productID: result.productID)
                 repo.write(object: task, writetype: .add)
+                print(repo.getRealmLocation())
             } else if productLikeButton.isSelected == false {
                 let deleteObeject = repo.searchDeleteObject(key: result.productID)
                 repo.delete(object: deleteObeject)
@@ -104,7 +110,7 @@ class ReusableCollectionViewCell: BaseCollectionViewCell {
         }
     }
     
-    //오토레이아웃
+    //레이아웃 설정
     override func constraints() {
         productImageView.snp.makeConstraints {
             $0.top.horizontalEdges.equalTo(self)

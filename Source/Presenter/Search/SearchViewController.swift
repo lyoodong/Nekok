@@ -7,9 +7,9 @@
 
 import UIKit
 import Alamofire
+import Kingfisher
 import RealmSwift
 import SnapKit
-
 
 class SearchViewController: BaseViewController {
     //MARK: - Porperty
@@ -27,18 +27,23 @@ class SearchViewController: BaseViewController {
             searchView.searchCollectionView.reloadData()
         }
     }
-    //검색 타입
+    
+    //검색 타입, 기본 정확도 순
     var currentSortType:SortType = .sim
+    
+    //Realm에서, 좋아요 클릭한 상품 데이터 저장
+    var likedShoppingList:Results<RealmModel>? {
+        didSet {
+            searchView.searchCollectionView.reloadData()
+        }
+    }
+    
+    //현재 상품의 좋아요 상태
+    var isLiked:Bool = false
     
     //Realm Repository
     let repo = LDRealm()
     
-    //Realm에서 좋아요 클릭한 상품 데이터 저장
-    var likedShoppingList:Results<RealmModel>?
-    
-    //현재 상품의 좋아요 상태
-    var currentLiked:Bool?
-
     //MARK: - UI property
     
     //메인뷰
@@ -46,6 +51,9 @@ class SearchViewController: BaseViewController {
     
     //seerchBar를 넣을 UISearchController
     let searchController = UISearchController()
+    
+    //전체 버튼 관리를 위한 배열
+    lazy var buttons: [UIButton] = [searchView.accuracyButton, searchView.dateButton, searchView.priceHighButton, searchView.priceLowButton]
     
     //네비게이션 타이틀
     lazy var naviTitle:UILabel = {
@@ -60,37 +68,29 @@ class SearchViewController: BaseViewController {
         view = searchView
     }
     
+    //화면 전환 시 realmDB 데이터 불러오기
     override func viewWillAppear(_ animated: Bool) {
         callRealmDB()
-        resetButton()
     }
     
     //Realm의 데이터를 likedShoppingList에 저장
     func callRealmDB() {
         likedShoppingList = repo.read(object: RealmModel.self)
     }
-
+    
     override func viewSet() {
-        super.viewSet()
-        searchCollectionViewSet()
         navigationbarSet()
         searchControllerSet()
-        setSortType()
+        searchCollectionViewSet()
         addtarget()
     }
     
-    //API 호출
+    //검색 API 호출
     func callrequest(query:String, sortType: SortType, page:Int) {
-        APIManager.shared.callRequest(query: query, sortType: sortType, page: page) { Result in
-            let result = Result
-            
-            if self.shoppingList == nil {
-                self.shoppingList = result
-            } else {
-                self.shoppingList?.items.append(contentsOf: result.items)
-            }
-        }
         
+        APIManager.shared.callRequest(query: query, sortType: sortType, page: page) { [weak self] Result in
+            self?.shoppingList = Result
+        }
     }
     
     //네비바 세팅
@@ -117,14 +117,6 @@ class SearchViewController: BaseViewController {
         searchView.searchCollectionView.prefetchDataSource = self
     }
     
-    //정렬 타입 세팅
-    func setSortType() {
-        searchView.accuracyButton.sortType = .sim
-        searchView.dateButton.sortType = .date
-        searchView.priceHighButton.sortType = .dsc
-        searchView.priceLowButton.sortType = .asc
-    }
-
     //타겟 설정
     func addtarget() {
         searchView.accuracyButton.addTarget(self, action: #selector(buttonClicked(_:)), for: .touchUpInside)
@@ -132,12 +124,20 @@ class SearchViewController: BaseViewController {
         searchView.priceHighButton.addTarget(self, action: #selector(buttonClicked(_:)), for: .touchUpInside)
         searchView.priceLowButton.addTarget(self, action: #selector(buttonClicked(_:)), for: .touchUpInside)
     }
-
-    //버튼 클릭 시 매서드
+    
+    //정렬 버튼 클릭 시 매서드
     @objc func buttonClicked(_ sender: UIButton) {
-        if let sortType = sender.sortType {
-            handleSortType(sortType)
+        
+        if searchBarText() == String().emptyStrng {
+            let alert = LDAlert(alertCase: .oneway, title: "검색어를 입력해주세요", message: nil, preferredStyle: .alert, firstTitle: "", firsthandler: nil, secondTitle: "", secondhandler: nil)
+            resetButton()
+            present(alert, animated: true)
+        } else {
+            if let sortType = sender.sortType {
+                handleSortType(sortType)
+            }
         }
+        
     }
     
     //정렬 타입에 따른 handling
@@ -150,8 +150,10 @@ class SearchViewController: BaseViewController {
     
     //정렬에 따른 button ui 변경
     func changeButtonUI() {
-        let buttons: [UIButton] = [searchView.accuracyButton, searchView.dateButton, searchView.priceHighButton, searchView.priceLowButton]
-        let searchBarIsEmpty = searchController.searchBar.text?.isEmpty ?? true
+        
+        //검색어가 빈공백으로 이루어진 경우를 대비
+        let removeSpaceString = searchBarText().trimmingCharacters(in: .whitespacesAndNewlines)
+        let searchBarIsEmpty = removeSpaceString.isEmpty
         
         for button in buttons {
             let sortType = button.sortType ?? .sim
@@ -160,42 +162,39 @@ class SearchViewController: BaseViewController {
             button.isSelected = isSelected
             button.setTitleColor(isSelected ? .black : .gray, for: .normal)
             button.backgroundColor = isSelected ? .white : .black
-            
         }
     }
     
     //버튼 비활성화
     func resetButton() {
-        let buttons: [UIButton] = [searchView.accuracyButton, searchView.dateButton, searchView.priceHighButton, searchView.priceLowButton]
-        
-        buttons.forEach { UIButton in
-            UIButton.isSelected = false
-            UIButton.setTitleColor(.gray, for: .normal)
-            UIButton.backgroundColor = .black
-            UIButton.isEnabled = false
+        buttons.forEach {
+            $0.isSelected = false
+            $0.setTitleColor( .gray, for: .normal)
+            $0.backgroundColor = .black
         }
     }
     
+    
     //버튼 활성화
     func restartButton() {
-        let buttons: [UIButton] = [searchView.accuracyButton, searchView.dateButton, searchView.priceHighButton, searchView.priceLowButton]
-        
-        buttons.forEach { UIButton in
-            UIButton.isEnabled = true
+        buttons.forEach {
+            $0.isEnabled = true
         }
     }
-
+    
     //서치바에서 현재 검색하고 있는 텍스트
     func searchBarText() -> String {
         guard let searchText = searchController.searchBar.text else { return String().emptyStrng}
-        return searchText
+        let result = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        return result
     }
 }
 
 //MARK: - Extension
 extension SearchViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDataSourcePrefetching {
     
-    //셀 갯수
+    //셀 개수
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return shoppingList?.items.count ?? 0
     }
@@ -204,76 +203,64 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReusableCollectionViewCell.IDF, for: indexPath) as? ReusableCollectionViewCell else { return UICollectionViewCell() }
         
-        //shoppingList 데이터 할당
-        guard let title = shoppingList?.items[indexPath.row].title
-        else { return UICollectionViewCell() }
+        guard let shoppingList = shoppingList else { return UICollectionViewCell() }
         
-        guard let productMallName = shoppingList?.items[indexPath.row].mallName
-        else { return UICollectionViewCell() }
-        
-        guard let price = shoppingList?.items[indexPath.row].lprice
-        else { return UICollectionViewCell() }
-        
-        guard let productID = shoppingList?.items[indexPath.row].productID
-        else { return UICollectionViewCell() }
-        
+        let title = shoppingList.items[indexPath.row].title
+        //HTML 테그 제거
         let productTitle = StringHelper.removepHTMLTags(from: title)
-        let productLprice = StringHelper.commaSeparator(price: price)
         
+        let price = shoppingList.items[indexPath.row].lprice
+        //콤마 추가
+        let lprice = StringHelper.commaSeparator(price: price)
+        
+        let productID = shoppingList.items[indexPath.row].productID
+        
+        //shoppingList 데이터 할당
         cell.productTitle.text = productTitle
-        cell.productMallName.text = "[ \(productMallName) ]"
-        cell.productLprice.text = productLprice
+        cell.productMallName.text = "[ \(shoppingList.items[indexPath.row].mallName) ]"
+        cell.productLprice.text = lprice
         
+        //이미지 처리
         DispatchQueue.global().async {
-            let imageLink = self.shoppingList?.items[indexPath.row].image ?? String().emptyStrng
-            if let url = URL(string: imageLink){
-                let data = try! Data(contentsOf: url)
-                let image = UIImage(data: data)
+            let imageLink = self.shoppingList?.items[indexPath.row].image ?? ""
+            if let url = URL(string: imageLink) {
                 DispatchQueue.main.async {
-                    cell.productImageView.image = image
-                    
+                    cell.productImageView.kf.setImage(with: url)
                 }
             }
         }
         
         //등록된 좋아요 물품 필터 로직
         guard let likedShoppingList else { return UICollectionViewCell() }
-        var likedShoppingDict: [String: Bool] = [:]
-
-        for item in likedShoppingList {
-            likedShoppingDict[item.productID] = item.isLiked
-        }
-
-        if let productID = shoppingList?.items[indexPath.row].productID {
-            if let isLiked = likedShoppingDict[productID] {
-                shoppingList?.items[indexPath.row].isLiked = isLiked
-            }
+        //좋아요 클릭된 상품의 productID
+        lazy var likedProductID = likedShoppingList.map { $0.productID }
+        
+        if likedProductID.contains(productID) {
+            cell.productLikeButton.isSelected = true
+        } else {
+            cell.productLikeButton.isSelected = false
         }
         
-        guard let isLikedCell = shoppingList?.items[indexPath.row].isLiked else { return UICollectionViewCell()}
-        
-        cell.productLikeButton.isSelected = isLikedCell
-        currentLiked = cell.productLikeButton.isSelected
-        
-        guard let result = shoppingList?.items[indexPath.row] else { return UICollectionViewCell()}
+        let result = shoppingList.items[indexPath.row]
         cell.shoppingList(item: result)
-    
+        
         return cell
     }
     
     //샐 클릭
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        guard let productID = shoppingList?.items[indexPath.row].productID else { return }
-        guard let productTitle = shoppingList?.items[indexPath.row].title else { return }
-        guard let currentLiked else { return }
+        guard let shoppingList = shoppingList else { return }
+        
+        let productID = shoppingList.items[indexPath.row].productID
+        let productTitle = shoppingList.items[indexPath.row].title
         
         let url = "https://msearch.shopping.naver.com/product/" + productID
+        
         let vc = DetailViewController()
         vc.urlString = url
         vc.naviTitle.text = StringHelper.removepHTMLTags(from: productTitle)
-        vc.isLiked = currentLiked
-        vc.productID = productID
+        vc.selectedData = shoppingList.items[indexPath.row]
         LDTransition(viewController: vc, style: .push)
     }
     
@@ -286,7 +273,6 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         for indexPath in indexPaths {
             if indexPath.row == shoppingItemCnt - 1 && pageCnt < 100 {
                 pageCnt += 1
-                print(pageCnt)
                 callrequest(query: searchBarText(), sortType: currentSortType, page: pageCnt)
             }
         }
@@ -294,7 +280,9 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
         print("===== 빠른 스크롤 중 \(indexPaths) =====")
+        
     }
+    
 }
 
 extension SearchViewController: UISearchBarDelegate {
@@ -302,9 +290,15 @@ extension SearchViewController: UISearchBarDelegate {
     //실시간 검색
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         restartButton()
-        if searchText == String().emptyStrng {
+        let text = searchText.trimmingCharacters(in: .whitespaces)
+        if text.isEmpty {
             shoppingList = nil
+            resetButton()
         } else {
+            shoppingList = nil
+            searchView.accuracyButton.isSelected.toggle()
+            changeButtonUI()
+            
             guard let query = searchBar.text else { return }
             callrequest(query: query, sortType: currentSortType, page: 1)
         }
@@ -312,17 +306,13 @@ extension SearchViewController: UISearchBarDelegate {
     
     //취소 버튼 클릭
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.shoppingList = nil
+        shoppingList = nil
         resetButton()
-    }
-    
-    //편집 종료 시 API 호출 방지
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        return
     }
     
     //검색 버튼 클릭
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        shoppingList = nil
         guard let query = searchBar.text else { return }
         callrequest(query: query, sortType: currentSortType, page: 1)
     }
