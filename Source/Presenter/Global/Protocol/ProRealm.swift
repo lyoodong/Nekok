@@ -10,10 +10,9 @@ import RealmSwift
 
 //기본 메서드
 protocol RealmDB {
-    func read<T: Object>(object:T.Type) -> Results<T>
+    func read<T: Object>(object:T.Type, readtype: ReadType, bykeyPath: String?) -> Results<T>
     func write<T: Object>(object:T, writetype:WriteType)
     func delete<T: Object>(object:T)
-    func sort<T: Object>(object:T.Type, byKeyPath: String, ascending:Bool) -> Results<T>
 }
 
 //Realm ropository pattern
@@ -22,12 +21,18 @@ class LDRealm:RealmDB {
     let realm = try! Realm()
     
     //불러오기
-    func read<T: Object>(object: T.Type) -> Results<T> {
+    func read<T: Object>(object: T.Type, readtype: ReadType, bykeyPath: String?) -> Results<T> {
         
-        return realm.objects(object).sorted(byKeyPath: "registeredDate", ascending: false)
+        if readtype == .read {
+            return realm.objects(object).sorted(byKeyPath: "registeredDate", ascending: false)
+        } else if readtype == .sort {
+            return realm.objects(object).sorted(byKeyPath: bykeyPath!, ascending: true)
+        } else {
+            return realm.objects(object).filter("error")
+        }
     }
     
-    //불러오기
+    //쓰기
     func write<T: Object>(object: T, writetype: WriteType )  {
         
         switch writetype {
@@ -59,20 +64,17 @@ class LDRealm:RealmDB {
             
         }
     }
-    
-    //정렬
-    func sort<T: Object>(object: T.Type, byKeyPath: String, ascending: Bool) -> Results<T>  {
-        return realm.objects(object).sorted(byKeyPath: byKeyPath, ascending: ascending)
-    }
+
     
     //검색어로 결과 필터링
     func filter(searchBar:UISearchBar, complition:@escaping (Results<RealmModel>) -> ()) {
         
-        let filteredData = read(object: RealmModel.self).where { result in
+        let filteredData = read(object: RealmModel.self, readtype: .read, bykeyPath: nil).where { result in
             result.title.contains( searchBar.text ?? "", options: .caseInsensitive)
         }
         
         complition(filteredData)
+
     }
     
     

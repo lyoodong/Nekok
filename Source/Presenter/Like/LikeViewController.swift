@@ -59,7 +59,7 @@ class LikeViewController: BaseViewController {
     
     //Realm의 데이터를 likedShoppingList에 저장
     func callRealmDB() {
-        likedShoppingList = repo.read(object: RealmModel.self)
+        likedShoppingList = repo.read(object: RealmModel.self, readtype: .read, bykeyPath: nil)
     }
     
     override func viewSet() {
