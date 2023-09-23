@@ -72,11 +72,15 @@ class ConvertData {
     }
     
     //현재 좋아요 상태에 따른 Realm 삭제 or 추가
+    //if문과 switch문을 비교할 때 기준은 1. 성능, 2, 코드 가독성이다.
+    //성능 측면에서 특정 임계치(연산량이 1억회 이상인 경우)를 넘어갈 경우 switch문이 패턴 매치을 통한 컴파일 최적화 등의 이유로 우수하나
+    //이전의 경우, if가 미약 하지만 성능 측면에서 우수하다.
+    //또한 isLiked는 케이스가 2개이기 때문에, 코드 가독성 측면에서도 switch와 크게 차이가 없다. 따라서 if else구문으로 변경
     func changeButtonStatus(object: RealmModel, key:String, isLiked: Bool) {
-        switch isLiked {
-        case true:
+        
+        if isLiked {
             repo.write(object: object, writetype: .add)
-        case false:
+        } else {
             let item = repo.searchDeleteObject(key: key)
             repo.delete(object: item)
         }
