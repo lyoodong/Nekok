@@ -13,8 +13,8 @@ class ReusableMainView: BaseView {
     
     //MARK: - UI property
     //정렬 버튼 정확도순
-    lazy var accuracyButton: UIButton = {
-        let view = UIButton()
+    lazy var accuracyButton: sortedButton = {
+        let view = sortedButton()
         view.setTitle("  정확도순  ", for: .normal)
         view.setTitleColor(.gray, for: .normal)
         view.layer.borderColor = UIColor.gray.cgColor
@@ -27,8 +27,8 @@ class ReusableMainView: BaseView {
     }()
     
     //정렬 버튼 날짜순
-    lazy var dateButton: UIButton = {
-        let view = UIButton()
+    lazy var dateButton: sortedButton = {
+        let view = sortedButton()
         view.setTitle("  날짜순  ", for: .normal)
         view.setTitleColor(.gray, for: .normal)
         view.layer.borderColor = UIColor.gray.cgColor
@@ -41,8 +41,8 @@ class ReusableMainView: BaseView {
     }()
 
     //정렬 버튼 가격 낮은 순
-    lazy var priceLowButton: UIButton = {
-        let view = UIButton()
+    lazy var priceLowButton: sortedButton = {
+        let view = sortedButton()
         view.setTitle("  가격 낮은순  ", for: .normal)
         view.setTitleColor(.gray, for: .normal)
         view.layer.borderColor = UIColor.gray.cgColor
@@ -55,8 +55,8 @@ class ReusableMainView: BaseView {
     }()
     
     //정렬 버튼 가격 높은 순
-    lazy var priceHighButton: UIButton = {
-        let view = UIButton()
+    lazy var priceHighButton: sortedButton = {
+        let view = sortedButton()
         view.setTitle("  가격 높은순  ", for: .normal)
         view.setTitleColor(.gray, for: .normal)
         view.layer.borderColor = UIColor.gray.cgColor

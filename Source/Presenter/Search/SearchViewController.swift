@@ -53,7 +53,7 @@ class SearchViewController: BaseViewController {
     let searchController = UISearchController()
     
     //전체 버튼 관리를 위한 배열
-    lazy var buttons: [UIButton] = [searchView.accuracyButton, searchView.dateButton, searchView.priceHighButton, searchView.priceLowButton]
+    lazy var buttons: [sortedButton] = [searchView.accuracyButton, searchView.dateButton, searchView.priceHighButton, searchView.priceLowButton]
     
     //네비게이션 타이틀
     lazy var naviTitle:UILabel = {
@@ -126,7 +126,7 @@ class SearchViewController: BaseViewController {
     }
     
     //정렬 버튼 클릭 시 매서드
-    @objc func buttonClicked(_ sender: UIButton) {
+    @objc func buttonClicked(_ sender: sortedButton) {
         
         if searchBarText() == String().emptyStrng {
             let alert = LDAlert(alertCase: .oneway, title: "검색어를 입력해주세요", message: nil, preferredStyle: .alert, firstTitle: "", firsthandler: nil, secondTitle: "", secondhandler: nil)
