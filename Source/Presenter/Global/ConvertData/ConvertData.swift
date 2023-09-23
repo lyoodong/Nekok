@@ -5,7 +5,6 @@
 //  Created by Dongwan Ryoo on 2023/09/12.
 //
 
-import Foundation
 import UIKit
 
 class ConvertData {
