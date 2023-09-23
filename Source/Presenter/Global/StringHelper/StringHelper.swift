@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum commaSeparatorError: Int, Error {
+    case failToConvertInt
+    case failToFormat
+}
+
 class StringHelper {
     
     //HTMLTags제거하는 함수
@@ -24,18 +29,21 @@ class StringHelper {
         
         return strippedString
     }
+
     
     //금액에 콤마 삽입
-    static func commaSeparator(price:String) -> String {
+    static func commaSeparator(price:String) throws -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         
-        guard let intPrice = Int(price)
-        else { return "Int 변환 실패"}
+        guard let intPrice = Int(price) else {
+            throw commaSeparatorError.failToConvertInt
+        }
         
-        guard let formattedPrice = formatter.string(from: intPrice as NSNumber)
-        else { return "포멧팅 실패"}
-    
+        guard let formattedPrice = formatter.string(from: intPrice as NSNumber) else {
+            throw commaSeparatorError.failToConvertInt
+        }
+        
         return formattedPrice + " 원"
     }
 }

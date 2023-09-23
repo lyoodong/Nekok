@@ -211,7 +211,21 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         
         let price = shoppingList.items[indexPath.row].lprice
         //콤마 추가
-        let lprice = StringHelper.commaSeparator(price: price)
+        var lprice = ""
+        
+        do {
+            try lprice = StringHelper.commaSeparator(price: price)
+        } catch {
+            switch error {
+            case commaSeparatorError.failToConvertInt:
+                print("금액이 숫자가 아닙니다.")
+            case commaSeparatorError.failToFormat:
+                print("포맷팅에 실패했습니다.")
+            default:
+                print("알 수 없는 에러")
+            }
+            lprice = "금액이 숫자가 아닙니다."
+        }
         
         let productID = shoppingList.items[indexPath.row].productID
         

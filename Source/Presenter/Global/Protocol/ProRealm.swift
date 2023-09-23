@@ -15,10 +15,23 @@ protocol RealmDB {
     func delete<T: Object>(object:T)
 }
 
+enum realmError: Int, Error {
+    case notFoundRealmDB
+}
+
 //Realm ropository pattern
 class LDRealm:RealmDB {
     
-    let realm = try! Realm()
+    var realm = try! Realm()
+    
+    //
+//    init?() throws {
+//        do {
+//            self.realm = try Realm()
+//        } catch {
+//            throw realmError.notFoundRealmDB
+//        }
+//    }
     
     //불러오기
     func read<T: Object>(object: T.Type, readtype: ReadType, bykeyPath: String?) -> Results<T> {

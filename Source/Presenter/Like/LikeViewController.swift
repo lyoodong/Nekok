@@ -121,7 +121,20 @@ extension LikeViewController: UICollectionViewDataSource, UICollectionViewDelega
         //Cell에 데이터 할당
         cell.productTitle.text = StringHelper.removepHTMLTags(from: title)
         cell.productMallName.text = "[ \(likedShoppingList[indexPath.row].mallName) ]"
-        cell.productLprice.text = StringHelper.commaSeparator(price: price)
+        
+        do {
+            try cell.productLprice.text = StringHelper.commaSeparator(price: price)
+        } catch {
+            switch error {
+            case commaSeparatorError.failToConvertInt:
+                cell.productLprice.text = "금액이 숫자가 아닙니다."
+            case commaSeparatorError.failToFormat:
+                cell.productLprice.text = "금액이 숫자가 아닙니다."
+            default:
+                cell.productLprice.text = "알 수 없는 에러"
+            }
+        }
+        
         
         let imageLink = likedShoppingList[indexPath.row].image
         DispatchQueue.global().async {
