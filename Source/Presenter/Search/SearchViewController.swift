@@ -63,6 +63,8 @@ class SearchViewController: BaseViewController {
         return view
     }()
     
+    var likedProductID: [String] = []
+    
     //MARK: - Define method
     override func loadView() {
         view = searchView
@@ -76,6 +78,9 @@ class SearchViewController: BaseViewController {
     //Realm의 데이터를 likedShoppingList에 저장
     func callRealmDB() {
         likedShoppingList = repo.read(object: RealmModel.self, readtype: .read, bykeyPath: nil)
+        
+        guard let likedShoppingList else { return }
+        likedProductID = likedShoppingList.map { $0.productID } 
     }
     
     override func viewSet() {
@@ -258,10 +263,8 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
             }
         }
         
-        //등록된 좋아요 물품 필터 로직
-        guard let likedShoppingList else { return UICollectionViewCell() }
-        //좋아요 클릭된 상품의 productID
-        lazy var likedProductID = likedShoppingList.map { $0.productID }
+
+
         
         if likedProductID.contains(productID) {
             cell.productLikeButton.isSelected = true
