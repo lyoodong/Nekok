@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		BE1A10382AB049250022031D /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1A10372AB049250022031D /* AlertType.swift */; };
 		BE1A103A2AB056A10022031D /* ConvertData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1A10392AB056A10022031D /* ConvertData.swift */; };
-		BE24A3EE2AAEE5C200BC3F0A /* ExtString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE24A3ED2AAEE5C200BC3F0A /* ExtString.swift */; };
 		BE24A3F02AAEFC2700BC3F0A /* ExtUIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE24A3EF2AAEFC2700BC3F0A /* ExtUIFont.swift */; };
 		BE24A3F42AAF370A00BC3F0A /* WriteType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE24A3F32AAF370A00BC3F0A /* WriteType.swift */; };
 		BE24A3F62AAF376500BC3F0A /* TransitionStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE24A3F52AAF376500BC3F0A /* TransitionStyle.swift */; };
@@ -49,7 +48,6 @@
 /* Begin PBXFileReference section */
 		BE1A10372AB049250022031D /* AlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
 		BE1A10392AB056A10022031D /* ConvertData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertData.swift; sourceTree = "<group>"; };
-		BE24A3ED2AAEE5C200BC3F0A /* ExtString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtString.swift; sourceTree = "<group>"; };
 		BE24A3EF2AAEFC2700BC3F0A /* ExtUIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtUIFont.swift; sourceTree = "<group>"; };
 		BE24A3F32AAF370A00BC3F0A /* WriteType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteType.swift; sourceTree = "<group>"; };
 		BE24A3F52AAF376500BC3F0A /* TransitionStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionStyle.swift; sourceTree = "<group>"; };
@@ -245,7 +243,6 @@
 				BEA9FB832AAA196D00766CDA /* ExtUIViewController.swift */,
 				BEA9FB872AAA1A7000766CDA /* ExtUIView.swift */,
 				BE6DD02E2AADF4B900511D5B /* ExtUIButton.swift */,
-				BE24A3ED2AAEE5C200BC3F0A /* ExtString.swift */,
 				BE24A3EF2AAEFC2700BC3F0A /* ExtUIFont.swift */,
 			);
 			path = Extension;
@@ -403,7 +400,6 @@
 				BE6B5F4C2AAE084500EB4339 /* ProRealm.swift in Sources */,
 				BE6DD02F2AADF4B900511D5B /* ExtUIButton.swift in Sources */,
 				BEA9FB432AA9C61F00766CDA /* SearchViewController.swift in Sources */,
-				BE24A3EE2AAEE5C200BC3F0A /* ExtString.swift in Sources */,
 				BEA9FB712AA9CF2500766CDA /* SortType.swift in Sources */,
 				BEA9FB262AA9C29000766CDA /* AppDelegate.swift in Sources */,
 				BEA9FB932AAA20EC00766CDA /* Constant.swift in Sources */,

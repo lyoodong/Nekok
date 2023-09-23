@@ -166,7 +166,7 @@ extension LikeViewController: UISearchBarDelegate {
     //실시간 검색
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        if searchText == String().emptyStrng {
+        if searchText == "" {
             callRealmDB()
         } else {
             repo.filter(searchBar: searchBar) { result in

@@ -69,7 +69,7 @@ class LDRealm:RealmDB {
     func filter(searchBar:UISearchBar, complition:@escaping (Results<RealmModel>) -> ()) {
         
         let filteredData = read(object: RealmModel.self).where { result in
-            result.title.contains( searchBar.text ?? String().emptyStrng, options: .caseInsensitive)
+            result.title.contains( searchBar.text ?? "", options: .caseInsensitive)
         }
         
         complition(filteredData)

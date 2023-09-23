@@ -128,7 +128,7 @@ class SearchViewController: BaseViewController {
     //정렬 버튼 클릭 시 매서드
     @objc func buttonClicked(_ sender: sortedButton) {
         
-        if searchBarText() == String().emptyStrng {
+        if searchBarText() == "" {
             let alert = LDAlert(alertCase: .oneway, title: "검색어를 입력해주세요", message: nil, preferredStyle: .alert, firstTitle: "", firsthandler: nil, secondTitle: "", secondhandler: nil)
             resetButton()
             present(alert, animated: true)
@@ -184,7 +184,7 @@ class SearchViewController: BaseViewController {
     
     //서치바에서 현재 검색하고 있는 텍스트
     func searchBarText() -> String {
-        guard let searchText = searchController.searchBar.text else { return String().emptyStrng}
+        guard let searchText = searchController.searchBar.text else { return ""}
         let result = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
         
         return result
