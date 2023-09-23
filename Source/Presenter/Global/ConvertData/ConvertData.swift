@@ -40,9 +40,13 @@ class ConvertData {
     let repo = LDRealm()
     
     //현재 좋아요 상태
-    func currentLikeStatus(productID:String, completion: (Bool) -> Void) {
+    //-> 단순하게 값을 반환하는 역할인데 굳이 callback 패턴을 사용할 이유가 없지 않을까?
+    //callback의 정의 1. 다른 함수의 인자로 상용되는 함수, 2. 어떤 이벤트에 의해 호출되는 함수
+    //하지만 이번 RECAP에서 해당 함수는 특정 이벤트에 의해 호출되는 것이 아니라, 단순히 값을 전달하는 역할을 가진다.
+    //따라서, 굳이?
+    func currentLikeStatus(productID:String ) -> Bool {
         let item = repo.readByPrimaryKey(object: RealmModel.self, productID: productID)
-        completion(item.isLiked)
+        return item.isLiked
     }
     
     //현재 좋아요 상태에 따른 버튼 이미지

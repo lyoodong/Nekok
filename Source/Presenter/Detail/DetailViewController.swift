@@ -104,9 +104,8 @@ class DetailViewController: BaseViewController {
     func checkLike() {
         guard let selectedData = selectedData else { return }
         let item = ConvertData.shared.toRealmModel(selectedData)
-        ConvertData.shared.currentLikeStatus(productID: item.productID) { result in
-            isLiked = result
-        }
+        let itemIsLiked = ConvertData.shared.currentLikeStatus(productID: item.productID)
+        isLiked = itemIsLiked
     }
     
     //오토레이아웃
