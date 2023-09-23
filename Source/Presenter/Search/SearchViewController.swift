@@ -89,7 +89,11 @@ class SearchViewController: BaseViewController {
     func callrequest(query:String, sortType: SortType, page:Int) {
         
         APIManager.shared.callRequest(query: query, sortType: sortType, page: page) { [weak self] Result in
-            self?.shoppingList = Result
+            if self?.shoppingList == nil {
+                self?.shoppingList = Result
+            } else {
+                self?.shoppingList?.items.append(contentsOf: Result.items)
+            }
         }
     }
     
@@ -249,7 +253,6 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
                             .transition(.fade(1)),
                             .processor(DownsamplingImageProcessor(size: CGSize(width: 100, height: 100))),
                             .scaleFactor(UIScreen.main.scale)
-                
                     ])
                 }
             }
