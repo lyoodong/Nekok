@@ -12,7 +12,12 @@ class ReusableCollectionViewCell: BaseCollectionViewCell {
     
     //MARK: - Property
     var result:Item?
-    let repo = LDRealm()
+    
+    //의존성 주입 ReusableCollectionViewCell내부에서 인스턴스를 찍어내면 cell을 생성할 때 마다 heap 영역에 repo에 대한 메모리 공간을 차지하게 된다.
+    // 메모리 오버헤드를 방지하기 위해 싱글톤 or 의존성 주입을 통해 해결
+    // 의존성 주입이란 외부에서 생성된 단일 객체를 cell에 주입해주는 것.
+    var repo: LDRealm?
+    
     
     //MARK: - UI property
     
@@ -101,11 +106,11 @@ class ReusableCollectionViewCell: BaseCollectionViewCell {
         if let result = result {
             if productLikeButton.isSelected == true {
                 let task = RealmModel(title: result.title, link: result.link, image: result.image, lprice: result.lprice, mallName: result.mallName, productID: result.productID)
-                repo.write(object: task, writetype: .add)
-                print(repo.getRealmLocation())
+                repo?.write(object: task, writetype: .add)
+                print(repo?.getRealmLocation())
             } else if productLikeButton.isSelected == false {
-                let deleteObeject = repo.searchDeleteObject(key: result.productID)
-                repo.delete(object: deleteObeject)
+                guard let deleteObeject = repo?.searchDeleteObject(key: result.productID) else { return }
+                repo?.delete(object: deleteObeject)
             }
         }
     }

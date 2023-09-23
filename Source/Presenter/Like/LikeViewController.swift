@@ -111,7 +111,10 @@ extension LikeViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     //셀 등록
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+                
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReusableCollectionViewCell.IDF, for: indexPath) as? ReusableCollectionViewCell else { return UICollectionViewCell() }
+        
+        cell.repo = repo
         
         //likedShoppingList 데이터 할당
         guard let likedShoppingList else { return UICollectionViewCell() }

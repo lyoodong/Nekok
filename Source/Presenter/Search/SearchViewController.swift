@@ -42,7 +42,7 @@ class SearchViewController: BaseViewController {
     var isLiked:Bool = false
     
     //Realm Repository
-    let repo = LDRealm()
+    var repo = LDRealm()
     
     //MARK: - UI property
     
@@ -202,6 +202,8 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     //셀 등록
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReusableCollectionViewCell.IDF, for: indexPath) as? ReusableCollectionViewCell else { return UICollectionViewCell() }
+        
+        cell.repo = repo
         
         guard let shoppingList = shoppingList else { return UICollectionViewCell() }
         
