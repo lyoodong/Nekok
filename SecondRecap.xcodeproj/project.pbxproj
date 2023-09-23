@@ -9,16 +9,16 @@
 /* Begin PBXBuildFile section */
 		BE1A10382AB049250022031D /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1A10372AB049250022031D /* AlertType.swift */; };
 		BE1A103A2AB056A10022031D /* ConvertData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1A10392AB056A10022031D /* ConvertData.swift */; };
-		BE24A3EE2AAEE5C200BC3F0A /* Ext + String.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE24A3ED2AAEE5C200BC3F0A /* Ext + String.swift */; };
-		BE24A3F02AAEFC2700BC3F0A /* Ext + UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE24A3EF2AAEFC2700BC3F0A /* Ext + UIFont.swift */; };
+		BE24A3EE2AAEE5C200BC3F0A /* ExtString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE24A3ED2AAEE5C200BC3F0A /* ExtString.swift */; };
+		BE24A3F02AAEFC2700BC3F0A /* ExtUIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE24A3EF2AAEFC2700BC3F0A /* ExtUIFont.swift */; };
 		BE24A3F42AAF370A00BC3F0A /* WriteType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE24A3F32AAF370A00BC3F0A /* WriteType.swift */; };
 		BE24A3F62AAF376500BC3F0A /* TransitionStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE24A3F52AAF376500BC3F0A /* TransitionStyle.swift */; };
 		BE24A3FA2AAF50AC00BC3F0A /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = BE24A3F92AAF50AC00BC3F0A /* SDWebImage */; };
 		BE24A3FC2AAF50AC00BC3F0A /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BE24A3FB2AAF50AC00BC3F0A /* SDWebImageMapKit */; };
 		BE24A3FF2AAF515F00BC3F0A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BE24A3FE2AAF515F00BC3F0A /* Kingfisher */; };
 		BE6B5F4A2AAE078E00EB4339 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6B5F492AAE078E00EB4339 /* RealmModel.swift */; };
-		BE6B5F4C2AAE084500EB4339 /* Pro + Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6B5F4B2AAE084500EB4339 /* Pro + Realm.swift */; };
-		BE6DD02F2AADF4B900511D5B /* Ext + UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6DD02E2AADF4B900511D5B /* Ext + UIButton.swift */; };
+		BE6B5F4C2AAE084500EB4339 /* ProRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6B5F4B2AAE084500EB4339 /* ProRealm.swift */; };
+		BE6DD02F2AADF4B900511D5B /* ExtUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6DD02E2AADF4B900511D5B /* ExtUIButton.swift */; };
 		BEA9FB262AA9C29000766CDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB252AA9C29000766CDA /* AppDelegate.swift */; };
 		BEA9FB282AA9C29000766CDA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB272AA9C29000766CDA /* SceneDelegate.swift */; };
 		BEA9FB2F2AA9C29100766CDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEA9FB2E2AA9C29100766CDA /* Assets.xcassets */; };
@@ -38,9 +38,9 @@
 		BEA9FB7B2AAA16BB00766CDA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB7A2AAA16BB00766CDA /* BaseViewController.swift */; };
 		BEA9FB7D2AAA16C000766CDA /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB7C2AAA16C000766CDA /* BaseCollectionViewCell.swift */; };
 		BEA9FB822AAA18D900766CDA /* ReusableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB812AAA18D900766CDA /* ReusableCollectionViewCell.swift */; };
-		BEA9FB842AAA196D00766CDA /* Ext + UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB832AAA196D00766CDA /* Ext + UIViewController.swift */; };
-		BEA9FB862AAA19D500766CDA /* Pro + ReusableIDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB852AAA19D500766CDA /* Pro + ReusableIDF.swift */; };
-		BEA9FB882AAA1A7000766CDA /* Ext + UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB872AAA1A7000766CDA /* Ext + UIView.swift */; };
+		BEA9FB842AAA196D00766CDA /* ExtUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB832AAA196D00766CDA /* ExtUIViewController.swift */; };
+		BEA9FB862AAA19D500766CDA /* ProReusableIDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB852AAA19D500766CDA /* ProReusableIDF.swift */; };
+		BEA9FB882AAA1A7000766CDA /* ExtUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB872AAA1A7000766CDA /* ExtUIView.swift */; };
 		BEA9FB932AAA20EC00766CDA /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB922AAA20EC00766CDA /* Constant.swift */; };
 		BEA9FB9B2AAA440E00766CDA /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB9A2AAA440E00766CDA /* TabBarViewController.swift */; };
 		BEA9FBA72AAB04A700766CDA /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FBA62AAB04A700766CDA /* StringHelper.swift */; };
@@ -49,13 +49,13 @@
 /* Begin PBXFileReference section */
 		BE1A10372AB049250022031D /* AlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
 		BE1A10392AB056A10022031D /* ConvertData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertData.swift; sourceTree = "<group>"; };
-		BE24A3ED2AAEE5C200BC3F0A /* Ext + String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext + String.swift"; sourceTree = "<group>"; };
-		BE24A3EF2AAEFC2700BC3F0A /* Ext + UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext + UIFont.swift"; sourceTree = "<group>"; };
+		BE24A3ED2AAEE5C200BC3F0A /* ExtString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtString.swift; sourceTree = "<group>"; };
+		BE24A3EF2AAEFC2700BC3F0A /* ExtUIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtUIFont.swift; sourceTree = "<group>"; };
 		BE24A3F32AAF370A00BC3F0A /* WriteType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteType.swift; sourceTree = "<group>"; };
 		BE24A3F52AAF376500BC3F0A /* TransitionStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionStyle.swift; sourceTree = "<group>"; };
 		BE6B5F492AAE078E00EB4339 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
-		BE6B5F4B2AAE084500EB4339 /* Pro + Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pro + Realm.swift"; sourceTree = "<group>"; };
-		BE6DD02E2AADF4B900511D5B /* Ext + UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext + UIButton.swift"; sourceTree = "<group>"; };
+		BE6B5F4B2AAE084500EB4339 /* ProRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProRealm.swift; sourceTree = "<group>"; };
+		BE6DD02E2AADF4B900511D5B /* ExtUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtUIButton.swift; sourceTree = "<group>"; };
 		BEA9FB222AA9C29000766CDA /* SecondRecap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecondRecap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEA9FB252AA9C29000766CDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BEA9FB272AA9C29000766CDA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,9 +73,9 @@
 		BEA9FB7A2AAA16BB00766CDA /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		BEA9FB7C2AAA16C000766CDA /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		BEA9FB812AAA18D900766CDA /* ReusableCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCollectionViewCell.swift; sourceTree = "<group>"; };
-		BEA9FB832AAA196D00766CDA /* Ext + UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext + UIViewController.swift"; sourceTree = "<group>"; };
-		BEA9FB852AAA19D500766CDA /* Pro + ReusableIDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pro + ReusableIDF.swift"; sourceTree = "<group>"; };
-		BEA9FB872AAA1A7000766CDA /* Ext + UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext + UIView.swift"; sourceTree = "<group>"; };
+		BEA9FB832AAA196D00766CDA /* ExtUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtUIViewController.swift; sourceTree = "<group>"; };
+		BEA9FB852AAA19D500766CDA /* ProReusableIDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProReusableIDF.swift; sourceTree = "<group>"; };
+		BEA9FB872AAA1A7000766CDA /* ExtUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtUIView.swift; sourceTree = "<group>"; };
 		BEA9FB922AAA20EC00766CDA /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		BEA9FB9A2AAA440E00766CDA /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		BEA9FBA62AAB04A700766CDA /* StringHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHelper.swift; sourceTree = "<group>"; };
@@ -242,11 +242,11 @@
 		BEA9FB482AA9C68A00766CDA /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				BEA9FB832AAA196D00766CDA /* Ext + UIViewController.swift */,
-				BEA9FB872AAA1A7000766CDA /* Ext + UIView.swift */,
-				BE6DD02E2AADF4B900511D5B /* Ext + UIButton.swift */,
-				BE24A3ED2AAEE5C200BC3F0A /* Ext + String.swift */,
-				BE24A3EF2AAEFC2700BC3F0A /* Ext + UIFont.swift */,
+				BEA9FB832AAA196D00766CDA /* ExtUIViewController.swift */,
+				BEA9FB872AAA1A7000766CDA /* ExtUIView.swift */,
+				BE6DD02E2AADF4B900511D5B /* ExtUIButton.swift */,
+				BE24A3ED2AAEE5C200BC3F0A /* ExtString.swift */,
+				BE24A3EF2AAEFC2700BC3F0A /* ExtUIFont.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -272,8 +272,8 @@
 		BEA9FB4D2AA9C6E400766CDA /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				BEA9FB852AAA19D500766CDA /* Pro + ReusableIDF.swift */,
-				BE6B5F4B2AAE084500EB4339 /* Pro + Realm.swift */,
+				BEA9FB852AAA19D500766CDA /* ProReusableIDF.swift */,
+				BE6B5F4B2AAE084500EB4339 /* ProRealm.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -391,19 +391,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEA9FB452AA9C62A00766CDA /* ReusableMainView.swift in Sources */,
-				BEA9FB862AAA19D500766CDA /* Pro + ReusableIDF.swift in Sources */,
+				BEA9FB862AAA19D500766CDA /* ProReusableIDF.swift in Sources */,
 				BEA9FB9B2AAA440E00766CDA /* TabBarViewController.swift in Sources */,
 				BEA9FB792AAA16A700766CDA /* BaseView.swift in Sources */,
 				BE24A3F62AAF376500BC3F0A /* TransitionStyle.swift in Sources */,
 				BEA9FB572AA9C72E00766CDA /* APIkey.swift in Sources */,
 				BEA9FB592AA9C79700766CDA /* APIManager.swift in Sources */,
-				BEA9FB882AAA1A7000766CDA /* Ext + UIView.swift in Sources */,
+				BEA9FB882AAA1A7000766CDA /* ExtUIView.swift in Sources */,
 				BEA9FB752AA9D1C500766CDA /* Model.swift in Sources */,
 				BEA9FB7B2AAA16BB00766CDA /* BaseViewController.swift in Sources */,
-				BE6B5F4C2AAE084500EB4339 /* Pro + Realm.swift in Sources */,
-				BE6DD02F2AADF4B900511D5B /* Ext + UIButton.swift in Sources */,
+				BE6B5F4C2AAE084500EB4339 /* ProRealm.swift in Sources */,
+				BE6DD02F2AADF4B900511D5B /* ExtUIButton.swift in Sources */,
 				BEA9FB432AA9C61F00766CDA /* SearchViewController.swift in Sources */,
-				BE24A3EE2AAEE5C200BC3F0A /* Ext + String.swift in Sources */,
+				BE24A3EE2AAEE5C200BC3F0A /* ExtString.swift in Sources */,
 				BEA9FB712AA9CF2500766CDA /* SortType.swift in Sources */,
 				BEA9FB262AA9C29000766CDA /* AppDelegate.swift in Sources */,
 				BEA9FB932AAA20EC00766CDA /* Constant.swift in Sources */,
@@ -414,9 +414,9 @@
 				BE1A103A2AB056A10022031D /* ConvertData.swift in Sources */,
 				BEA9FB7D2AAA16C000766CDA /* BaseCollectionViewCell.swift in Sources */,
 				BEA9FB532AA9C71400766CDA /* DetailViewController.swift in Sources */,
-				BEA9FB842AAA196D00766CDA /* Ext + UIViewController.swift in Sources */,
+				BEA9FB842AAA196D00766CDA /* ExtUIViewController.swift in Sources */,
 				BE24A3F42AAF370A00BC3F0A /* WriteType.swift in Sources */,
-				BE24A3F02AAEFC2700BC3F0A /* Ext + UIFont.swift in Sources */,
+				BE24A3F02AAEFC2700BC3F0A /* ExtUIFont.swift in Sources */,
 				BEA9FB822AAA18D900766CDA /* ReusableCollectionViewCell.swift in Sources */,
 				BE6B5F4A2AAE078E00EB4339 /* RealmModel.swift in Sources */,
 			);
