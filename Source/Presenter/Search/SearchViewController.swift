@@ -241,7 +241,16 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
             let imageLink = self.shoppingList?.items[indexPath.row].image ?? ""
             if let url = URL(string: imageLink) {
                 DispatchQueue.main.async {
-                    cell.productImageView.kf.setImage(with: url)
+                    cell.productImageView.kf.setImage(
+                        with: url,
+                        placeholder: UIImage(named: "noImage"),
+                        options:[
+                            .cacheOriginalImage,
+                            .transition(.fade(1)),
+                            .processor(DownsamplingImageProcessor(size: CGSize(width: 100, height: 100))),
+                            .scaleFactor(UIScreen.main.scale)
+                
+                    ])
                 }
             }
         }
@@ -289,6 +298,7 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         for indexPath in indexPaths {
             if indexPath.row == shoppingItemCnt - 1 && pageCnt < 100 {
                 pageCnt += 1
+                print(pageCnt)
                 callrequest(query: searchBarText(), sortType: currentSortType, page: pageCnt)
             }
         }
@@ -296,7 +306,6 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
         print("===== 빠른 스크롤 중 \(indexPaths) =====")
-        
     }
     
 }

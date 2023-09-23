@@ -17,8 +17,7 @@ class ReusableCollectionViewCell: BaseCollectionViewCell {
     // 메모리 오버헤드를 방지하기 위해 싱글톤 or 의존성 주입을 통해 해결
     // 의존성 주입이란 외부에서 생성된 단일 객체를 cell에 주입해주는 것.
     var repo: LDRealm?
-    
-    
+
     //MARK: - UI property
     
     //상품 이미지
