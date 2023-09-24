@@ -80,7 +80,7 @@ class SearchViewController: BaseViewController {
         likedShoppingList = repo.read(object: RealmModel.self, readtype: .read, bykeyPath: nil)
         
         guard let likedShoppingList else { return }
-        likedProductID = likedShoppingList.map { $0.productID } 
+        likedProductID = likedShoppingList.map { $0.productID }
     }
     
     override func viewSet() {
@@ -99,7 +99,19 @@ class SearchViewController: BaseViewController {
             } else {
                 self?.shoppingList?.items.append(contentsOf: Result.items)
             }
+        } progressHandler: { progress in
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 1) {
+                    let result = Float(progress)
+                    self.setProgress(result, animated: true)
+                }
+            }
         }
+    }
+    
+    //progressBar 상태
+    func setProgress(_ progress: Float, animated: Bool) {
+        searchView.progressBar.progress = progress
     }
     
     //네비바 세팅
@@ -258,13 +270,13 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
                             .transition(.fade(1)),
                             .processor(DownsamplingImageProcessor(size: CGSize(width: 100, height: 100))),
                             .scaleFactor(UIScreen.main.scale)
-                    ])
+                        ])
                 }
             }
         }
         
-
-
+        
+        
         
         if likedProductID.contains(productID) {
             cell.productLikeButton.isSelected = true
@@ -321,6 +333,7 @@ extension SearchViewController: UISearchBarDelegate {
     //실시간 검색
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         restartButton()
+        searchView.progressBar.progress = 0
         let text = searchText.trimmingCharacters(in: .whitespaces)
         if text.isEmpty {
             shoppingList = nil

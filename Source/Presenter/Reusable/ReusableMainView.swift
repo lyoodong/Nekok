@@ -12,6 +12,7 @@ class ReusableMainView: BaseView {
     //MARK: - Porperty
     
     //MARK: - UI property
+    
     //정렬 버튼 정확도순
     lazy var accuracyButton: sortedButton = {
         let view = sortedButton()
@@ -68,6 +69,16 @@ class ReusableMainView: BaseView {
         return view
     }()
     
+    //네트워크 진행상태를 알려주는 UIProgressView
+    lazy var progressBar: UIProgressView = {
+        let view = UIProgressView()
+        view.progressTintColor = .systemPink
+        view.trackTintColor = .black
+        view.progress = 0
+        
+        return view
+    }()
+    
     // 컬렉션 뷰
     lazy var searchCollectionView: UICollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: searchCollectionViewwLayout())
@@ -76,6 +87,12 @@ class ReusableMainView: BaseView {
         
         return view
     }()
+
+    //MARK: - Define method
+    
+    override func viewSet() {
+        [accuracyButton, dateButton, priceLowButton, priceHighButton, searchCollectionView, progressBar].forEach(addSubview)
+    }
     
     // 컬렉션 뷰 설정
     func searchCollectionViewwLayout() -> UICollectionViewFlowLayout {
@@ -88,14 +105,9 @@ class ReusableMainView: BaseView {
         return layout
     }
     
-    //MARK: - Define method
-    
-    override func viewSet() {
-        [accuracyButton, dateButton, priceLowButton, priceHighButton, searchCollectionView].forEach(addSubview)
-    }
-    
     //레이아웃 설정
     override func constraints() {
+        
         accuracyButton.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaLayoutGuide)
             $0.leading.equalTo(self.safeAreaLayoutGuide).offset(Constant.spacing)
@@ -116,8 +128,13 @@ class ReusableMainView: BaseView {
             $0.leading.equalTo(priceHighButton.snp.trailing).offset(Constant.spacing / 2)
         }
         
+        progressBar.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview()
+            $0.top.equalTo(accuracyButton.snp.bottom).offset(Constant.spacing / 2)
+        }
+        
         searchCollectionView.snp.makeConstraints {
-            $0.top.equalTo(accuracyButton.snp.bottom).offset(Constant.spacing)
+            $0.top.equalTo(progressBar.snp.bottom).offset(Constant.spacing)
             $0.leading.equalTo(self.safeAreaLayoutGuide).offset(Constant.spacing / 2)
             $0.trailing.equalTo(self.safeAreaLayoutGuide).inset(Constant.spacing / 2)
             $0.bottom.equalTo(self.safeAreaLayoutGuide)
