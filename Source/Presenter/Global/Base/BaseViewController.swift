@@ -16,7 +16,7 @@ class BaseViewController: UIViewController {
     }
 
     func viewSet() {
-        view.backgroundColor = .black
+        view.backgroundColor = .bgGrey
     }
 
     func constraints() {

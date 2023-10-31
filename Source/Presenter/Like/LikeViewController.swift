@@ -41,6 +41,7 @@ class LikeViewController: BaseViewController {
         let view = UILabel()
         view.text = "좋아요 목록"
         view.font = .bold16
+        view.textColor = .black
         return view
     }()
     
@@ -63,6 +64,7 @@ class LikeViewController: BaseViewController {
     }
     
     override func viewSet() {
+        super.viewSet()
         hiddenButtons()
         likeCollectionViewSet()
         navigationbarSet()
@@ -95,8 +97,8 @@ class LikeViewController: BaseViewController {
         searchController.searchBar.placeholder = "검색어를 입력해주세요."
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.tintColor = .systemPink
-        searchController.searchBar.barStyle = .black
+        searchController.searchBar.tintColor = .nGreen
+        searchController.searchBar.barStyle = .default
         navigationItem.searchController = searchController
     }
 }

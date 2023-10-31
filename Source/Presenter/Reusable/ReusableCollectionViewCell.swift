@@ -26,7 +26,8 @@ class ReusableCollectionViewCell: BaseCollectionViewCell {
         view.contentMode = .scaleAspectFill
         view.layer.cornerRadius = 20
         view.clipsToBounds = true
-        
+        view.addShadow()
+
         return view
     }()
     
@@ -43,7 +44,7 @@ class ReusableCollectionViewCell: BaseCollectionViewCell {
     //상품 품명
     lazy var productTitle:UILabel = {
         let view = UILabel()
-        view.textColor = .white
+        view.textColor = .black
         view.numberOfLines = 2
         view.font = UIFont.regular14
         
@@ -53,7 +54,7 @@ class ReusableCollectionViewCell: BaseCollectionViewCell {
     //상품 가격
     lazy var productLprice:UILabel =  {
         let view = UILabel()
-        view.textColor = .white
+        view.textColor = .black
         view.numberOfLines = 1
         view.font = UIFont.bold16
         
@@ -67,7 +68,7 @@ class ReusableCollectionViewCell: BaseCollectionViewCell {
         let selectedimage = UIImage(systemName: "heart.fill")
         view.setImage(unselectedimage, for: .normal)
         view.setImage(selectedimage, for: .selected)
-        view.tintColor = .black
+        view.tintColor = .nGreen
         view.backgroundColor = .white
         view.layer.cornerRadius = Constant.spacing
         view.addTarget(self, action: #selector(likeButtonClicked), for: .touchUpInside)

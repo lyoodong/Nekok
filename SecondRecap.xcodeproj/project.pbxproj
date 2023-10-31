@@ -9,11 +9,10 @@
 /* Begin PBXBuildFile section */
 		BE1A10382AB049250022031D /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1A10372AB049250022031D /* AlertType.swift */; };
 		BE1A103A2AB056A10022031D /* ConvertData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1A10392AB056A10022031D /* ConvertData.swift */; };
+		BE1D49552AF12D3A00F0DBEE /* ExtUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1D49542AF12D3A00F0DBEE /* ExtUIColor.swift */; };
 		BE24A3F02AAEFC2700BC3F0A /* ExtUIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE24A3EF2AAEFC2700BC3F0A /* ExtUIFont.swift */; };
 		BE24A3F42AAF370A00BC3F0A /* WriteType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE24A3F32AAF370A00BC3F0A /* WriteType.swift */; };
 		BE24A3F62AAF376500BC3F0A /* TransitionStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE24A3F52AAF376500BC3F0A /* TransitionStyle.swift */; };
-		BE24A3FA2AAF50AC00BC3F0A /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = BE24A3F92AAF50AC00BC3F0A /* SDWebImage */; };
-		BE24A3FC2AAF50AC00BC3F0A /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BE24A3FB2AAF50AC00BC3F0A /* SDWebImageMapKit */; };
 		BE24A3FF2AAF515F00BC3F0A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BE24A3FE2AAF515F00BC3F0A /* Kingfisher */; };
 		BE6B5F4A2AAE078E00EB4339 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6B5F492AAE078E00EB4339 /* RealmModel.swift */; };
 		BE6B5F4C2AAE084500EB4339 /* ProRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6B5F4B2AAE084500EB4339 /* ProRealm.swift */; };
@@ -49,6 +48,7 @@
 /* Begin PBXFileReference section */
 		BE1A10372AB049250022031D /* AlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
 		BE1A10392AB056A10022031D /* ConvertData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertData.swift; sourceTree = "<group>"; };
+		BE1D49542AF12D3A00F0DBEE /* ExtUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtUIColor.swift; sourceTree = "<group>"; };
 		BE24A3EF2AAEFC2700BC3F0A /* ExtUIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtUIFont.swift; sourceTree = "<group>"; };
 		BE24A3F32AAF370A00BC3F0A /* WriteType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteType.swift; sourceTree = "<group>"; };
 		BE24A3F52AAF376500BC3F0A /* TransitionStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionStyle.swift; sourceTree = "<group>"; };
@@ -91,8 +91,6 @@
 				BE24A3FF2AAF515F00BC3F0A /* Kingfisher in Frameworks */,
 				BEA9FB5E2AA9C86900766CDA /* RealmSwift in Frameworks */,
 				BEA9FB5C2AA9C86900766CDA /* Realm in Frameworks */,
-				BE24A3FC2AAF50AC00BC3F0A /* SDWebImageMapKit in Frameworks */,
-				BE24A3FA2AAF50AC00BC3F0A /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +244,7 @@
 				BEA9FB872AAA1A7000766CDA /* ExtUIView.swift */,
 				BE6DD02E2AADF4B900511D5B /* ExtUIButton.swift */,
 				BE24A3EF2AAEFC2700BC3F0A /* ExtUIFont.swift */,
+				BE1D49542AF12D3A00F0DBEE /* ExtUIColor.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -326,8 +325,6 @@
 				BEA9FB5D2AA9C86900766CDA /* RealmSwift */,
 				BEA9FB652AA9C87E00766CDA /* Alamofire */,
 				BEA9FB6D2AA9CA3100766CDA /* SnapKit */,
-				BE24A3F92AAF50AC00BC3F0A /* SDWebImage */,
-				BE24A3FB2AAF50AC00BC3F0A /* SDWebImageMapKit */,
 				BE24A3FE2AAF515F00BC3F0A /* Kingfisher */,
 			);
 			productName = SecondRecap;
@@ -362,7 +359,6 @@
 				BEA9FB5A2AA9C86900766CDA /* XCRemoteSwiftPackageReference "realm-swift" */,
 				BEA9FB642AA9C87E00766CDA /* XCRemoteSwiftPackageReference "Alamofire" */,
 				BEA9FB6C2AA9CA3100766CDA /* XCRemoteSwiftPackageReference "SnapKit" */,
-				BE24A3F82AAF50AC00BC3F0A /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				BE24A3FD2AAF515F00BC3F0A /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = BEA9FB232AA9C29000766CDA /* Products */;
@@ -419,6 +415,7 @@
 				BE24A3F02AAEFC2700BC3F0A /* ExtUIFont.swift in Sources */,
 				BEA9FB822AAA18D900766CDA /* ReusableCollectionViewCell.swift in Sources */,
 				BE6B5F4A2AAE078E00EB4339 /* RealmModel.swift in Sources */,
+				BE1D49552AF12D3A00F0DBEE /* ExtUIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -627,14 +624,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		BE24A3F82AAF50AC00BC3F0A /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
 		BE24A3FD2AAF515F00BC3F0A /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -670,16 +659,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		BE24A3F92AAF50AC00BC3F0A /* SDWebImage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BE24A3F82AAF50AC00BC3F0A /* XCRemoteSwiftPackageReference "SDWebImage" */;
-			productName = SDWebImage;
-		};
-		BE24A3FB2AAF50AC00BC3F0A /* SDWebImageMapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BE24A3F82AAF50AC00BC3F0A /* XCRemoteSwiftPackageReference "SDWebImage" */;
-			productName = SDWebImageMapKit;
-		};
 		BE24A3FE2AAF515F00BC3F0A /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BE24A3FD2AAF515F00BC3F0A /* XCRemoteSwiftPackageReference "Kingfisher" */;

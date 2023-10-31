@@ -17,11 +17,10 @@ class ReusableMainView: BaseView {
     lazy var accuracyButton: sortedButton = {
         let view = sortedButton()
         view.setTitle("  정확도순  ", for: .normal)
-        view.setTitleColor(.gray, for: .normal)
-        view.layer.borderColor = UIColor.gray.cgColor
-        view.layer.borderWidth = 1
+        view.setTitleColor(.black, for: .normal)
         view.layer.cornerRadius = 10
         view.titleLabel?.font = UIFont.basicFont
+        view.addShadow()
         view.sortType = .sim
         
         return view
@@ -31,11 +30,10 @@ class ReusableMainView: BaseView {
     lazy var dateButton: sortedButton = {
         let view = sortedButton()
         view.setTitle("  날짜순  ", for: .normal)
-        view.setTitleColor(.gray, for: .normal)
-        view.layer.borderColor = UIColor.gray.cgColor
-        view.layer.borderWidth = 1
+        view.setTitleColor(.black, for: .normal)
         view.layer.cornerRadius = 10
         view.titleLabel?.font = UIFont.basicFont
+        view.addShadow()
         view.sortType = .date
         
         return view
@@ -45,11 +43,10 @@ class ReusableMainView: BaseView {
     lazy var priceLowButton: sortedButton = {
         let view = sortedButton()
         view.setTitle("  가격 낮은순  ", for: .normal)
-        view.setTitleColor(.gray, for: .normal)
-        view.layer.borderColor = UIColor.gray.cgColor
-        view.layer.borderWidth = 1
+        view.setTitleColor(.black, for: .normal)
         view.layer.cornerRadius = 10
         view.titleLabel?.font = UIFont.basicFont
+        view.addShadow()
         view.sortType = .dsc
         
         return view
@@ -59,11 +56,10 @@ class ReusableMainView: BaseView {
     lazy var priceHighButton: sortedButton = {
         let view = sortedButton()
         view.setTitle("  가격 높은순  ", for: .normal)
-        view.setTitleColor(.gray, for: .normal)
-        view.layer.borderColor = UIColor.gray.cgColor
-        view.layer.borderWidth = 1
+        view.setTitleColor(.black, for: .normal)
         view.layer.cornerRadius = 10
         view.titleLabel?.font = UIFont.basicFont
+        view.addShadow()
         view.sortType = .asc
         
         return view
@@ -72,8 +68,8 @@ class ReusableMainView: BaseView {
     //네트워크 진행상태를 알려주는 UIProgressView
     lazy var progressBar: UIProgressView = {
         let view = UIProgressView()
-        view.progressTintColor = .systemPink
-        view.trackTintColor = .black
+        view.progressTintColor = .nGreen
+        view.trackTintColor = .nGreen
         view.progress = 0
         
         return view
@@ -83,7 +79,7 @@ class ReusableMainView: BaseView {
     lazy var searchCollectionView: UICollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: searchCollectionViewwLayout())
         view.register(ReusableCollectionViewCell.self, forCellWithReuseIdentifier: ReusableCollectionViewCell.IDF)
-        view.backgroundColor = .black
+        view.backgroundColor = .bgGrey
         
         return view
     }()

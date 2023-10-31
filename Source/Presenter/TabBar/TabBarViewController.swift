@@ -22,7 +22,7 @@ class TabBarViewController: UITabBarController {
     //탭바 설정
     func viewSet(){
         addViewControllers()
-        self.tabBar.tintColor = .systemPink
+        self.tabBar.tintColor = .nGreen
         self.tabBar.unselectedItemTintColor = .white
     }
     

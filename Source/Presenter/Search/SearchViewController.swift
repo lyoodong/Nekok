@@ -60,6 +60,7 @@ class SearchViewController: BaseViewController {
         let view = UILabel()
         view.text = "쇼핑 검색"
         view.font = .bold16
+        view.textColor = .black
         return view
     }()
     
@@ -84,6 +85,7 @@ class SearchViewController: BaseViewController {
     }
     
     override func viewSet() {
+        super.viewSet()
         navigationbarSet()
         searchControllerSet()
         searchCollectionViewSet()
@@ -92,7 +94,6 @@ class SearchViewController: BaseViewController {
     
     //검색 API 호출
     func callrequest(query:String, sortType: SortType, page:Int) {
-        
         APIManager.shared.callRequest(query: query, sortType: sortType, page: page) { [weak self] Result in
             if self?.shoppingList == nil {
                 self?.shoppingList = Result
@@ -126,8 +127,8 @@ class SearchViewController: BaseViewController {
         searchController.searchBar.placeholder = "검색어를 입력해주세요."
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.tintColor = .systemPink
-        searchController.searchBar.barStyle = .black
+        searchController.searchBar.tintColor = .nGreen
+        searchController.searchBar.barStyle = .default
         navigationItem.searchController = searchController
     }
     
@@ -181,8 +182,8 @@ class SearchViewController: BaseViewController {
             let isSelected = sortType == currentSortType
             button.isEnabled = !searchBarIsEmpty
             button.isSelected = isSelected
-            button.setTitleColor(isSelected ? .black : .gray, for: .normal)
-            button.backgroundColor = isSelected ? .white : .black
+            button.setTitleColor(isSelected ? .white : .black, for: .normal)
+            button.backgroundColor = isSelected ? .nGreen : .white
         }
     }
     
@@ -190,8 +191,8 @@ class SearchViewController: BaseViewController {
     func resetButton() {
         buttons.forEach {
             $0.isSelected = false
-            $0.setTitleColor( .gray, for: .normal)
-            $0.backgroundColor = .black
+            $0.setTitleColor( .black, for: .normal)
+            $0.backgroundColor = .white
         }
     }
     
