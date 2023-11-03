@@ -75,7 +75,7 @@ DispatchQueue.global().async {
         }
 ```
 
-1. 실시간 검색에 따른, 불필요한 API 호출 
+2. 실시간 검색에 따른, 불필요한 API 호출 최소화
 
 **Issue**
 
