@@ -169,13 +169,13 @@ extension LikeViewController: UICollectionViewDataSource, UICollectionViewDelega
         
         let vc = DetailViewController()
         vc.urlString = url
-        vc.naviTitle.text = StringHelper.removepHTMLTags(from: productTitle)
+        vc.title = StringHelper.removepHTMLTags(from: productTitle)
         
         let result = likedShoppingList[indexPath.row]
         let item = Item(title: result.title, link: result.link , image: result.image, lprice: result.lprice, mallName: result.mallName, productID: result.productID)
     
         vc.selectedData = item
-        LDTransition(viewController: vc, style: .push)
+        transitionView(viewController: vc, style: .push)
     }
 }
 
@@ -205,3 +205,4 @@ extension LikeViewController: UISearchBarDelegate {
         }
     }
 }
+

@@ -42,6 +42,11 @@
 		BEA9FB932AAA20EC00766CDA /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB922AAA20EC00766CDA /* Constant.swift */; };
 		BEA9FB9B2AAA440E00766CDA /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FB9A2AAA440E00766CDA /* TabBarViewController.swift */; };
 		BEA9FBA72AAB04A700766CDA /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9FBA62AAB04A700766CDA /* StringHelper.swift */; };
+		BED2B70E2AF4BE020063EE9D /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = BED2B70D2AF4BE020063EE9D /* RxCocoa */; };
+		BED2B7102AF4BE020063EE9D /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BED2B70F2AF4BE020063EE9D /* RxSwift */; };
+		BED2B7132AF4C5810063EE9D /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BED2B7122AF4C5810063EE9D /* Lottie */; };
+		BED2B7162AF4C6120063EE9D /* LikeAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = BED2B7152AF4C6120063EE9D /* LikeAnimation.json */; };
+		BED2B71A2AF4C7020063EE9D /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED2B7192AF4C7020063EE9D /* SplashViewController.swift */; };
 		BEE96D8F2ABEBA9400CDD722 /* ReadType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE96D8E2ABEBA9400CDD722 /* ReadType.swift */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +83,8 @@
 		BEA9FB922AAA20EC00766CDA /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		BEA9FB9A2AAA440E00766CDA /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		BEA9FBA62AAB04A700766CDA /* StringHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHelper.swift; sourceTree = "<group>"; };
+		BED2B7152AF4C6120063EE9D /* LikeAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = LikeAnimation.json; path = ../../../Downloads/LikeAnimation.json; sourceTree = "<group>"; };
+		BED2B7192AF4C7020063EE9D /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		BEE96D8E2ABEBA9400CDD722 /* ReadType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,11 +93,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BED2B70E2AF4BE020063EE9D /* RxCocoa in Frameworks */,
 				BEA9FB662AA9C87E00766CDA /* Alamofire in Frameworks */,
 				BEA9FB6E2AA9CA3100766CDA /* SnapKit in Frameworks */,
 				BE24A3FF2AAF515F00BC3F0A /* Kingfisher in Frameworks */,
 				BEA9FB5E2AA9C86900766CDA /* RealmSwift in Frameworks */,
 				BEA9FB5C2AA9C86900766CDA /* Realm in Frameworks */,
+				BED2B7102AF4BE020063EE9D /* RxSwift in Frameworks */,
+				BED2B7132AF4C5810063EE9D /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +154,7 @@
 		BEA9FB3A2AA9C2A100766CDA /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				BED2B7142AF4C6040063EE9D /* JSON */,
 				BEA9FB2E2AA9C29100766CDA /* Assets.xcassets */,
 			);
 			path = Resource;
@@ -152,6 +163,8 @@
 		BEA9FB3B2AA9C2A200766CDA /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				BED2B71B2AF4C7060063EE9D /* Splash */,
+				BED2B7192AF4C7020063EE9D /* SplashViewController.swift */,
 				BEA9FB3E2AA9C2C400766CDA /* Global */,
 				BEA9FB972AAA43F400766CDA /* TabBar */,
 				BE24A3F72AAF37DD00BC3F0A /* Reusable */,
@@ -304,6 +317,21 @@
 			path = StringHelper;
 			sourceTree = "<group>";
 		};
+		BED2B7142AF4C6040063EE9D /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				BED2B7152AF4C6120063EE9D /* LikeAnimation.json */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+		BED2B71B2AF4C7060063EE9D /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -326,6 +354,9 @@
 				BEA9FB652AA9C87E00766CDA /* Alamofire */,
 				BEA9FB6D2AA9CA3100766CDA /* SnapKit */,
 				BE24A3FE2AAF515F00BC3F0A /* Kingfisher */,
+				BED2B70D2AF4BE020063EE9D /* RxCocoa */,
+				BED2B70F2AF4BE020063EE9D /* RxSwift */,
+				BED2B7122AF4C5810063EE9D /* Lottie */,
 			);
 			productName = SecondRecap;
 			productReference = BEA9FB222AA9C29000766CDA /* SecondRecap.app */;
@@ -360,6 +391,8 @@
 				BEA9FB642AA9C87E00766CDA /* XCRemoteSwiftPackageReference "Alamofire" */,
 				BEA9FB6C2AA9CA3100766CDA /* XCRemoteSwiftPackageReference "SnapKit" */,
 				BE24A3FD2AAF515F00BC3F0A /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				BED2B70C2AF4BE020063EE9D /* XCRemoteSwiftPackageReference "RxSwift" */,
+				BED2B7112AF4C5810063EE9D /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = BEA9FB232AA9C29000766CDA /* Products */;
 			projectDirPath = "";
@@ -376,6 +409,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEA9FB2F2AA9C29100766CDA /* Assets.xcassets in Resources */,
+				BED2B7162AF4C6120063EE9D /* LikeAnimation.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +430,7 @@
 				BEA9FB882AAA1A7000766CDA /* ExtUIView.swift in Sources */,
 				BEA9FB752AA9D1C500766CDA /* Model.swift in Sources */,
 				BEA9FB7B2AAA16BB00766CDA /* BaseViewController.swift in Sources */,
+				BED2B71A2AF4C7020063EE9D /* SplashViewController.swift in Sources */,
 				BE6B5F4C2AAE084500EB4339 /* ProRealm.swift in Sources */,
 				BE6DD02F2AADF4B900511D5B /* ExtUIButton.swift in Sources */,
 				BEA9FB432AA9C61F00766CDA /* SearchViewController.swift in Sources */,
@@ -656,6 +691,22 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		BED2B70C2AF4BE020063EE9D /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+		BED2B7112AF4C5810063EE9D /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -683,6 +734,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BEA9FB6C2AA9CA3100766CDA /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		BED2B70D2AF4BE020063EE9D /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BED2B70C2AF4BE020063EE9D /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		BED2B70F2AF4BE020063EE9D /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BED2B70C2AF4BE020063EE9D /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		BED2B7122AF4C5810063EE9D /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BED2B7112AF4C5810063EE9D /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -10,6 +10,8 @@ import Alamofire
 import Kingfisher
 import RealmSwift
 import SnapKit
+import RxSwift
+import RxCocoa
 
 class SearchViewController: BaseViewController {
     //MARK: - Porperty
@@ -90,6 +92,29 @@ class SearchViewController: BaseViewController {
         searchControllerSet()
         searchCollectionViewSet()
         addtarget()
+        bind()
+    }
+    
+    lazy var realTimeSearchBar = searchController.searchBar.rx.text.orEmpty
+    let disposeBag = DisposeBag()
+    
+    func bind() {
+        realTimeSearchBar
+            .debounce(RxTimeInterval.milliseconds(300), scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .subscribe(with: self) { owner, value in
+                owner.restartButton()
+                if value.isEmpty {
+                    owner.shoppingList = nil
+                    owner.resetButton()
+                } else {
+                    owner.shoppingList = nil
+                    owner.changeButtonUI()
+                    owner.searchView.accuracyButton.isSelected.toggle()
+                    owner.callrequest(query: value, sortType: owner.currentSortType, page: 1)
+                }
+            }
+            .disposed(by: disposeBag)
     }
     
     //검색 API 호출
@@ -108,6 +133,18 @@ class SearchViewController: BaseViewController {
                 }
             }
         }
+    }
+    
+    func callRequest(query:String, sortType: SortType, page:Int) async {
+        var result: Result?
+        
+        do {
+            result = try await APIManager.shared.callrequest(query: query, sortType: sortType, page: page)
+            shoppingList = result
+        } catch {
+            print(error.localizedDescription)
+        }
+        
     }
     
     //progressBar 상태
@@ -303,9 +340,9 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         
         let vc = DetailViewController()
         vc.urlString = url
-        vc.naviTitle.text = StringHelper.removepHTMLTags(from: productTitle)
+        vc.title = StringHelper.removepHTMLTags(from: productTitle)
         vc.selectedData = shoppingList.items[indexPath.row]
-        LDTransition(viewController: vc, style: .push)
+        transitionView(viewController: vc, style: .push)
     }
     
     
@@ -331,24 +368,6 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
 
 extension SearchViewController: UISearchBarDelegate {
     
-    //실시간 검색
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        restartButton()
-        searchView.progressBar.progress = 0
-        let text = searchText.trimmingCharacters(in: .whitespaces)
-        if text.isEmpty {
-            shoppingList = nil
-            resetButton()
-        } else {
-            shoppingList = nil
-            searchView.accuracyButton.isSelected.toggle()
-            changeButtonUI()
-            
-            guard let query = searchBar.text else { return }
-            callrequest(query: query, sortType: currentSortType, page: 1)
-        }
-    }
-    
     //취소 버튼 클릭
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         shoppingList = nil
@@ -362,4 +381,5 @@ extension SearchViewController: UISearchBarDelegate {
         callrequest(query: query, sortType: currentSortType, page: 1)
     }
 }
+
 

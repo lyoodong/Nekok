@@ -17,17 +17,20 @@ extension UIViewController: ReusableIDF {
 //transition
 extension UIViewController {
     
-    func LDTransition (viewController: UIViewController, style: TransitionStyle, modalPresentationStyle: UIModalPresentationStyle = .automatic) {
+    func transitionView (viewController: UIViewController, style: TransitionStyle, modalPresentationStyle: UIModalPresentationStyle = .automatic) {
         let vc = viewController
         
         switch style {
         case .present:
             present(vc, animated: true)
             
+        case .presentFull :
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
+            
         case .presentNavigation:
-            let nav = UINavigationController(rootViewController: vc)
-            nav.modalPresentationStyle = modalPresentationStyle
-            present(nav, animated: true)
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
         
         case .push:
             navigationController?.pushViewController(vc, animated: true)

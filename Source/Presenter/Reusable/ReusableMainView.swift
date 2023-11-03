@@ -14,7 +14,7 @@ class ReusableMainView: BaseView {
     //MARK: - UI property
     
     //정렬 버튼 정확도순
-    lazy var accuracyButton: sortedButton = {
+    let accuracyButton: sortedButton = {
         let view = sortedButton()
         view.setTitle("  정확도순  ", for: .normal)
         view.setTitleColor(.black, for: .normal)
@@ -27,7 +27,7 @@ class ReusableMainView: BaseView {
     }()
     
     //정렬 버튼 날짜순
-    lazy var dateButton: sortedButton = {
+    let dateButton: sortedButton = {
         let view = sortedButton()
         view.setTitle("  날짜순  ", for: .normal)
         view.setTitleColor(.black, for: .normal)
@@ -40,7 +40,7 @@ class ReusableMainView: BaseView {
     }()
 
     //정렬 버튼 가격 낮은 순
-    lazy var priceLowButton: sortedButton = {
+    let priceLowButton: sortedButton = {
         let view = sortedButton()
         view.setTitle("  가격 낮은순  ", for: .normal)
         view.setTitleColor(.black, for: .normal)
@@ -53,7 +53,7 @@ class ReusableMainView: BaseView {
     }()
     
     //정렬 버튼 가격 높은 순
-    lazy var priceHighButton: sortedButton = {
+    let priceHighButton: sortedButton = {
         let view = sortedButton()
         view.setTitle("  가격 높은순  ", for: .normal)
         view.setTitleColor(.black, for: .normal)
@@ -77,7 +77,7 @@ class ReusableMainView: BaseView {
     
     // 컬렉션 뷰
     lazy var searchCollectionView: UICollectionView = {
-        let view = UICollectionView(frame: .zero, collectionViewLayout: searchCollectionViewwLayout())
+        let view = UICollectionView(frame: .zero, collectionViewLayout: searchCollectionViewLayout())
         view.register(ReusableCollectionViewCell.self, forCellWithReuseIdentifier: ReusableCollectionViewCell.IDF)
         view.backgroundColor = .bgGrey
         
@@ -88,10 +88,11 @@ class ReusableMainView: BaseView {
     
     override func viewSet() {
         [accuracyButton, dateButton, priceLowButton, priceHighButton, searchCollectionView, progressBar].forEach(addSubview)
+        [accuracyButton, dateButton, priceLowButton, priceHighButton].forEach { $0.addShadow() }
     }
     
     // 컬렉션 뷰 설정
-    func searchCollectionViewwLayout() -> UICollectionViewFlowLayout {
+    func searchCollectionViewLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = Constant.spacing / 2
         layout.minimumInteritemSpacing =  Constant.spacing / 2

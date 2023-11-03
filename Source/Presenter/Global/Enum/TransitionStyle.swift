@@ -12,4 +12,5 @@ enum TransitionStyle {
     case present
     case presentNavigation
     case push
+    case presentFull
 }

@@ -29,12 +29,6 @@ class DetailViewController: BaseViewController {
     //WEBVIEW
     var webView = WKWebView()
     
-    //네비게이션 타이틀
-    lazy var naviTitle:UILabel = {
-        let view = UILabel()
-        return view
-    }()
-    
     //좋아요 버튼
     lazy var likeButton:UIBarButtonItem = {
         let view = UIBarButtonItem()
@@ -45,8 +39,9 @@ class DetailViewController: BaseViewController {
     
     //MARK: - Define method
     override func viewWillAppear(_ animated: Bool) {
-        print(isLiked)
         ConvertData.shared.likeImageSet(likeButton, isLiked: isLiked)
+        navigationbarSet()
+        tabBarSet()
     }
     
     @objc func likeButtonClicked() {
@@ -62,9 +57,8 @@ class DetailViewController: BaseViewController {
     
     override func viewSet() {
         webViewSet()
-        navigationbarSet()
-        tabBarSet()
         checkLike()
+        
     }
     
     //웹뷰 세팅
@@ -82,21 +76,19 @@ class DetailViewController: BaseViewController {
     //네비바 세팅
     func navigationbarSet() {
         let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = .black
+        appearance.backgroundColor = .white
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.tintColor = .white
-        navigationItem.titleView = naviTitle
+        navigationController?.navigationBar.tintColor = .black
         navigationItem.rightBarButtonItem = likeButton
         ConvertData.shared.likeImageSet(likeButton, isLiked: isLiked)
-        
     }
     
     //탭바 세팅
     func tabBarSet() {
         let appearance = UITabBarAppearance()
-        appearance.backgroundColor = .black
+        appearance.backgroundColor = .white
         tabBarController?.tabBar.standardAppearance = appearance
     }
     
@@ -114,8 +106,8 @@ class DetailViewController: BaseViewController {
             $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
         
-        naviTitle.snp.makeConstraints {
-            $0.width.equalTo(UIScreen.main.bounds.width * 0.4)
-        }
+//        naviTitle.snp.makeConstraints {
+//            $0.width.equalTo(UIScreen.main.bounds.width * 0.4)
+//        }
     }
 }

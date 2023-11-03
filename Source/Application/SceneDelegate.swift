@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //Intial View 초기화
         window = UIWindow(windowScene: scene)
-        let vc = TabBarViewController()
+        let vc = SplashViewController()
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
     }

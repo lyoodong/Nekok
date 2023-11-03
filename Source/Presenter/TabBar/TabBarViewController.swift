@@ -23,7 +23,7 @@ class TabBarViewController: UITabBarController {
     func viewSet(){
         addViewControllers()
         self.tabBar.tintColor = .nGreen
-        self.tabBar.unselectedItemTintColor = .white
+        self.tabBar.unselectedItemTintColor = .black
     }
     
     //탭바에 VC추가
