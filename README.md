@@ -105,7 +105,6 @@ func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
     }
 
 //개선된 코드
-
 lazy var realTimeSearchBar = searchController.searchBar.rx.text.orEmpty
 let disposeBag = DisposeBag()
 
