@@ -67,7 +67,7 @@ DispatchQueue.global().async {
             cell.productImageView.kf.setImage(
                 with: url,
                 placeholder: UIImage(named: "noImage"),
-								//이미지 로드 시 여러 옵션 선택 가능
+		//이미지 로드 시 여러 옵션 선택 가능
                 options:[
                     .cacheOriginalImage, //캐싱 처리 
                     .processor(DownsamplingImageProcessor(size: CGSize(width: 100, height: 100))), //이미지 다운 샘플링
