@@ -1,4 +1,5 @@
-<img src = " NeKok스냅샷.png" >
+<img src="NeKok스냅샷.png" align="left">  
+
 # Nekok
 
 > 핵심 기능
