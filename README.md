@@ -4,7 +4,9 @@
 
 > 핵심 기능
 > 
-- 네이버 쇼핑 API를 활용한 검색 및 페이지네이션 기능 구현
+- 네이버 쇼핑 API를 활용한 쇼핑 검색 기능 
+- prefetchItemsAt 메서드를 활용한 페이지 네이션 기능
+- WebKit을 활용한 제품 상세페이지 기능
 - Realm DB를 활용해 상품 좋아요 기능 구현
 - Alamofire + Router 패턴을 활용해 네트워크 통신 기능 구현
 - Kingfisher를 활용해 이미지 캐싱 및 다운샘플링 구현
@@ -16,7 +18,7 @@
 - **언어**: Swift
 - **프레임워크**: UIkit, WebKit
 - **디자인패턴**: MVC, Router
-- **라이브러리**: Kingfisher, RealmSwift, Alamofire, SnapKit
+- **라이브러리**: Kingfisher, RealmSwift, RealmCocoa, Alamofire, SnapKit
 
 ---
 
