@@ -85,10 +85,11 @@ DispatchQueue.global().async {
 **Solution**
 
 - RxSwift를 활용해 searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) 메서드를 대체
-- distinctUntilChanged() 오퍼레이터를 통해 연속된 중복 값을 필터링
-- debounce() 오퍼레이터를 통해 새로운 입력이 없을 때만(즉, 검색할 키워드 입력이 완료되었을 때) 네트워크 호출
 
 **Result**
+
+- distinctUntilChanged() 오퍼레이터를 통해 연속된 중복 값을 필터링
+- debounce() 오퍼레이터를 통해 새로운 입력이 없을 때만(즉, 검색할 키워드 입력이 완료되었을 때) 네트워크 호출
 
 ```swift
 ////핵심 적인 로직을 보여드리기 위해, UI업데이트 코드는 삭제했습니다.
